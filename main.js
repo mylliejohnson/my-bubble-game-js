@@ -41,15 +41,31 @@ window.onkeydown = function(e){
     }
     if(e.key === "ArrowRight"){
         bubb.x += 10
+        if (bubb.x > canvas.width - bubb.r) {
+            bubb.x -= 10
+            console.log('Out of bounds')
+        }
     }
     if(e.key === "ArrowLeft"){
         bubb.x -= 10
+        if (bubb.x < 0 + bubb.r) {
+            bubb.x += 10
+            console.log('Out of bounds')
+        }
     }
     if(e.key === "ArrowUp"){
         bubb.y -= 10
+        if (bubb.y < 0 + bubb.r) {
+            bubb.y += 10
+            console.log('Out of bounds')
+        }
     }
     if(e.key === "ArrowDown"){
         bubb.y += 10
+        if (bubb.y > canvas.height - bubb.r) {
+            bubb.y -= 10
+            console.log('Out of bounds')
+        }
     }
 }
 
@@ -76,7 +92,6 @@ window.onkeyup = function(e){
     }
     
 }
-
 
 
 // create pins
@@ -106,7 +121,7 @@ const pinPops = []
 
 setInterval(() => {
     let pins = new Pin(
-        canvas.width, Math.max(Math.random() * 500), 75, 10, "grey");
+        canvas.width, 40 + Math.max(Math.random() * 400), 75, 10, "grey");
         pinPops.push(pins)
    
 }, Math.random() * 5500);
