@@ -76,7 +76,6 @@ h1::after {
     filter: blur(0.03em);
     transform: translate(0.018em, -0.018em) rotate(0deg);
   }
-
   100% {
     filter: blur(0.007em);
     transform: translate(0) rotate(-0.5deg);
