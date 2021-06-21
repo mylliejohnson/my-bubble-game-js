@@ -96,12 +96,13 @@ window.onkeyup = function(e){
 
 // create pins
 class Pin {
-     constructor(x,y,w,h,color){
+     constructor(x,y,w,h,color, img){
         this.x = x
         this.y = y
         this.w = w
         this.h = h
         this.color = color
+        this.img = img
     }
 
     draw = () => {
@@ -124,7 +125,7 @@ setInterval(() => {
         canvas.width, 40 + Math.max(Math.random() * 400), 75, 10, "grey");
         pinPops.push(pins)
    
-}, Math.random() * 5500);
+}, 5000);
 
 // lives
 let lives = [ "X", "X", "X"]
