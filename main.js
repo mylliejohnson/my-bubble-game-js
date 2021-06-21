@@ -6,6 +6,7 @@
 // create vertical pins ? maybe
 // DETECT COLLISION!!
 // create a start intro ? maybe
+// animateId = null ??
 
 
 // canvas setup
@@ -35,7 +36,7 @@ let bubb = new Bubble(canvas.width/2, canvas.height/2, 10, 0, 1*Math.PI);
 
 // key functions
 window.onkeydown = function(e){
-    if(e.key === " " && bubb.r < 200){
+    if(e.key === " " && bubb.r < 175){
         bubb.r++
     }
 }
@@ -43,9 +44,6 @@ window.onkeydown = function(e){
 let score = 0; 
 window.onkeyup = function(e){
     switch (e.key === " "){
-        case bubb.r < 10:
-            score += 10;
-            break;
         case bubb.r < 50: 
             score += 25
             break;
@@ -94,6 +92,30 @@ setInterval(() => {
    
 }, Math.random() * 5500);
 
+// lives
+// let lives = [ "X", "X", "X"]
+// function displayLives(lives){
+//     for (let life of lives){
+//         ctx.fillText(life, canvas.width - 130, canvas.height - 25)
+//     }
+// }
+// displayLives(lives[0], lives[1], lives[2])
+
+// OR , is a function for the array better or a class?
+
+// class Lives{
+//     constructor(x, y){
+//         this.x = x
+//         this.y = y
+//     }
+
+//     draw = () => {
+//         ctx.fillText(life, canvas.width - 130, canvas.height - 25)
+
+//     }
+// }
+
+
 
 // animate it!
 let animateId = null;
@@ -105,7 +127,9 @@ function animate(){
     bubb.draw()
 
     ctx.fillText(score, 20, 50)
-    ctx.fillText("XXX", canvas.width - 130, canvas.height - 50) // turn into array when life is lost!!!
+
+    // when collision is detected, pop a life off of the array 
+    ctx.fillText("XXX", canvas.width - 130, canvas.height - 25) // turn into array to pop off when life is lost!!!
 
     for(let pins of pinPops){
         pins.move();
