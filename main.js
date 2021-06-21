@@ -1,10 +1,10 @@
 
 // TO DO LIST
-// reset circle onkeyup
+// reset circle onkeyup ------- GOT IT :)
 // delete an X (life) when collision
-// send in pins a few at a time
-// give min and max to pins
-// 
+// send in pins a few at a time ----------- GOT IT :)
+// give min and max to pins so they're only in range of the bubble
+
 
 
 
@@ -56,6 +56,7 @@ window.onkeyup = function(e){
             score += 200            
             break;
     }
+    bubb.r = 10
 }
 
 class Pin {
@@ -73,7 +74,7 @@ class Pin {
     }
 
     move = () => {
-        this.x -= 5
+        this.x -= 25
         this.draw()
     }
 }
@@ -83,13 +84,14 @@ const pinPops = []
 setInterval(() => {
     let pins = new Pin(
         canvas.width, Math.max(Math.random() * 500), 75, 10, "grey");
-  pinPops.push(pins);
-}, 1000);
+        pinPops.push(pins)
+   
+}, Math.random() * 5500);
 
-// how can i stop and reset the circle when realsed(aka onkeyup) ???
+let animateId = null;
 
 function animate(){
-    requestAnimationFrame(animate)
+    animateId = requestAnimationFrame(animate)
     ctx.clearRect(0,0,canvas.width, canvas.height)
     
     bubb.draw()
@@ -97,8 +99,8 @@ function animate(){
     ctx.fillText(score, 20, 50)
     ctx.fillText("XXX", canvas.width - 130, canvas.height - 50) // turn into array when life is lost!!!
 
-    for( let pins of pinPops){
-        pins.move()
+    for(let pins of pinPops){
+        pins.move();
     }
 
     let life = "X"
@@ -107,3 +109,4 @@ function animate(){
 ctx.font = "48px monospace"
 
 animate()
+
