@@ -45,15 +45,31 @@ window.onkeydown = function(e){
     }
     if(e.key === "ArrowRight"){
         bubb.x += 10
+        if (bubb.x > canvas.width - bubb.r) {
+            bubb.x -= 10
+            console.log('Out of bounds')
+        }
     }
     if(e.key === "ArrowLeft"){
         bubb.x -= 10
+        if (bubb.x < 0 + bubb.r) {
+            bubb.x += 10
+            console.log('Out of bounds')
+        }
     }
     if(e.key === "ArrowUp"){
         bubb.y -= 10
+        if (bubb.y < 0 + bubb.r) {
+            bubb.y += 10
+            console.log('Out of bounds')
+        }
     }
     if(e.key === "ArrowDown"){
         bubb.y += 10
+        if (bubb.y > canvas.height - bubb.r) {
+            bubb.y -= 10
+            console.log('Out of bounds')
+        }
     }
 }
 
