@@ -106,7 +106,7 @@ class Pin {
   };
 
   move = () => {
-    this.x -= 25;
+    this.x -= 10;
     this.draw();
   };
 }
