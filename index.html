@@ -18,29 +18,49 @@ lightgreen: #B2E0A4 */
             background: #B2E0A4;
             font-family: 'Teko', san-serif;
             font-size: 1.5em;
-            overflow: hidden;
+            /* overflow: hidden; */
+        }
 
+        h1, h4 { text-align: center; margin: 0}
+
+        header{
+            display: flex;
+            margin: 0;
+            width: 100%;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
         }
-        h1, h4{
-            text-align: center;
-            color: #6F9465;
-        }
+
+        img {width: 75px}
+        img path {fill:lightpink}
 
         canvas{
             display: block;
-            background: #828B94;
+            background: white ;
             border-radius: 25px;
             margin: auto;
         }
 
-
+        p {
+            font-family: sans-serif !important;
+            font-size:medium;
+            text-align: center;
+        }
     </style>
 
 </head>
 <body>
-    <h1>DON'T POP MY BUBBLE</h1>
-    <h4>By Myllie Johnson</h4>
-    <canvas width="800" height="600"></canvas>
+    <header>
+        <img src="bubbles.svg">
+        <div>
+        <h1>DON'T POP MY BUBBLE</h1>
+        <h4>By Myllie Johnson</h4>
+    </div>
+        <img src="bubbles.svg">
+</header>
+    <p><strong>INSTRUCTIONS</strong>: Hold down the space bar to grow the bubble, let go to release & avoid the pins to win! You get 3 lives. </p>
+    <canvas width="800" height="500"></canvas>
 </body>
 <script src="main.js"></script>
 </html>

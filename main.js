@@ -1,3 +1,14 @@
+
+// TO DO LIST
+// reset circle onkeyup
+// delete an X (life) when collision
+// send in pins a few at a time
+// give min and max to pins
+// 
+
+
+
+
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
@@ -22,16 +33,15 @@ let bubb = new Bubble(canvas.width/2, canvas.height/2, 10, 0, 1*Math.PI);
 
 window.onkeydown = function(e){
     if(e.key === " " && bubb.r < 200){
-        bubb.r ++
+        bubb.r++
     }
 }
-
 
 let score = 0;
 window.onkeyup = function(e){
     switch (e.key === " "){
         case bubb.r < 10:
-            score += 10
+            score += 10;
             break;
         case bubb.r < 50: 
             score += 25
@@ -43,18 +53,55 @@ window.onkeyup = function(e){
             score += 100
             break;
         case bubb.r > 150:
-            score += 200
+            score += 200            
             break;
     }
 }
 
+class Pin {
+     constructor(x,y,w,h,color){
+        this.x = x
+        this.y = y
+        this.w = w
+        this.h = h
+        this.color = color
+    }
+
+    draw = () => {
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.x, this.y, this.w, this.h)
+    }
+
+    move = () => {
+        this.x -= 5
+        this.draw()
+    }
+}
+
+const pinPops = []
+
+setInterval(() => {
+    let pins = new Pin(
+        canvas.width, Math.max(Math.random() * 500), 75, 10, "grey");
+  pinPops.push(pins);
+}, 1000);
+
+// how can i stop and reset the circle when realsed(aka onkeyup) ???
+
 function animate(){
     requestAnimationFrame(animate)
+    ctx.clearRect(0,0,canvas.width, canvas.height)
+    
     bubb.draw()
 
-    
     ctx.fillText(score, 20, 50)
+    ctx.fillText("XXX", canvas.width - 130, canvas.height - 50) // turn into array when life is lost!!!
 
+    for( let pins of pinPops){
+        pins.move()
+    }
+
+    let life = "X"
 }
 
 ctx.font = "48px monospace"
