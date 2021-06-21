@@ -125,7 +125,7 @@ const pinPops = []
 
 setInterval(() => {
     let pins = new Pin(
-        canvas.width, 40 + Math.max(Math.random() * 400), 75, 10, "grey");
+        canvas.width, 50 + Math.max(Math.random() * 400), 75, 10, "grey");
         pinPops.push(pins)
    
 }, Math.random() * 5500);
