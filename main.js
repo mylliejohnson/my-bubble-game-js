@@ -1,13 +1,11 @@
-
-// TO DO LIST
-// reset circle onkeyup ------- GOT IT :)
+// TO DO LIST:
+// reset bubble onkeyup ------- GOT IT :)
 // delete an X (life) when collision
-// send in pins a few at a time ----------- GOT IT :)
-// give min and max to pins so they're only in range of the bubble
-
-
-
-
+// send in pins one at a time ----------- GOT IT :)
+// give pins min and max so they're only in range of the bubble
+// create vertical pins ? maybe
+// DETECT COLLISION!!
+// create a start intro ? maybe
 
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
@@ -109,4 +107,3 @@ function animate(){
 ctx.font = "48px monospace"
 
 animate()
-
