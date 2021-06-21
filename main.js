@@ -98,7 +98,6 @@ window.onkeyup = function(e){
 }
 
 
-
 // create pins
 class Pin {
      constructor(x,y,w,h,color){
@@ -126,7 +125,7 @@ const pinPops = []
 
 setInterval(() => {
     let pins = new Pin(
-        canvas.width, Math.max(Math.random() * 500), 75, 10, "grey");
+        canvas.width, 40 + Math.max(Math.random() * 400), 75, 10, "grey");
         pinPops.push(pins)
    
 }, Math.random() * 5500);
