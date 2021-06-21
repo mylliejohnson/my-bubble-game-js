@@ -36,10 +36,6 @@ let bubb = new Bubble(canvas.width/2, canvas.height/2, 10, 0, 1*Math.PI);
 
 // key functions
 window.onkeydown = function(e){
-    
-}
-
-window.onkeydown = function(e){
     if(e.key === " " && bubb.r < 175){
         bubb.r++
     }
@@ -114,7 +110,7 @@ class Pin {
     }
 
     move = () => {
-        this.x -= 25
+        this.x -= 10
         this.draw()
     }
 }
@@ -156,6 +152,10 @@ function animate(){
 
     for(let pins of pinPops){
         pins.move();
+    }
+
+    for(let pinsDown of verticalPins){
+        pinsDown.move();
     }
 
     let life = "X"
