@@ -179,12 +179,8 @@ function animate() {
 
   for (let pins of pinPops) {
     pins.move();
-    // console.log(bubb.x, bubb.y, pins.x, pins.y);
-    if (
-      circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)
-      //   detectCollision(bubb.x, bubb.y, pins.x, pins.y) <
-      //   bubb.r + (pins.x - pins.w)
-    ) {
+
+    if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
       cancelAnimationFrame(animateId);
     }
@@ -192,7 +188,7 @@ function animate() {
 
   for (let pinsDown of verticalPins) {
     pinsDown.move();
-    // console.log(bubb.x, bubb.y, pinsDown.x, pinsDown.y);
+
     if (
       circleRect(
         bubb.x,
@@ -203,8 +199,6 @@ function animate() {
         pinsDown.w,
         pinsDown.h
       )
-      //   detectCollision(bubb.x, bubb.y, pinsDown.x, pinsDown.y) <
-      //   bubb.r + (pinsDown.x - pinsDown.w)
     ) {
       console.log("collision down");
       cancelAnimationFrame(animateId);
