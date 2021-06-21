@@ -7,9 +7,12 @@
 // DETECT COLLISION!!
 // create a start intro ? maybe
 
+
+// canvas setup
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
+// create bubble
 class Bubble {
     constructor(x, y, r, sAngle, eAngle){
         this.x = x
@@ -27,15 +30,17 @@ class Bubble {
     }
 }
 
+// the bubble
 let bubb = new Bubble(canvas.width/2, canvas.height/2, 10, 0, 1*Math.PI);
 
+// key functions
 window.onkeydown = function(e){
     if(e.key === " " && bubb.r < 200){
         bubb.r++
     }
 }
 
-let score = 0;
+let score = 0; 
 window.onkeyup = function(e){
     switch (e.key === " "){
         case bubb.r < 10:
@@ -57,6 +62,7 @@ window.onkeyup = function(e){
     bubb.r = 10
 }
 
+// create pins
 class Pin {
      constructor(x,y,w,h,color){
         this.x = x
@@ -77,6 +83,8 @@ class Pin {
     }
 }
 
+// interval for pins 
+// give min and max y values to be in range with the bubble **
 const pinPops = []
 
 setInterval(() => {
@@ -86,6 +94,8 @@ setInterval(() => {
    
 }, Math.random() * 5500);
 
+
+// animate it!
 let animateId = null;
 
 function animate(){
