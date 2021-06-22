@@ -167,6 +167,7 @@ setInterval(() => {
     canvas.width,
     40 + Math.max(Math.random() * 400),
     10,
+    10,
     25,
     "white"
   );
@@ -186,6 +187,8 @@ function displayLives(lives) {
 // animate it!
 let animateId = null;
 
+let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
+
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -203,8 +206,8 @@ function animate() {
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
       cancelAnimationFrame(animateId);
-
       bgMusic.pause();
+      audioPopSound.play();
       displayLives(lives.pop());
     }
   }
@@ -228,6 +231,7 @@ function animate() {
       cancelAnimationFrame(animateId);
 
       bgMusic.pause();
+      audioPopSound.play();
       displayLives(lives.pop());
     }
   }
