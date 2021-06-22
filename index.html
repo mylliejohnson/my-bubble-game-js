@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,22 +9,26 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap');
-            /* grey: #828B94, 
+        /* grey: #828B94, 
             blue: #A9D0F5, 
             seafoam: #AFE0D0, 
             darkgreen: #6F9465, 
             lightgreen: #B2E0A4 */
 
-        body{
+        body {
             background: #B2E0A4;
             font-family: 'Teko', san-serif;
             font-size: 1.5em;
             /* overflow: hidden; */
         }
 
-        h1, h4 { text-align: center; margin: 0}
+        h1,
+        h4 {
+            text-align: center;
+            margin: 0
+        }
 
-        header{
+        header {
             display: flex;
             margin: 0;
             width: 100%;
@@ -32,21 +37,27 @@
             align-items: center;
         }
 
-        img {width: 75px}
-        img path {fill:lightpink}
+        img {
+            width: 75px
+        }
 
-        canvas{
+        img path {
+            fill: lightpink
+        }
+
+        canvas {
             display: block;
-            background: white ;
+            background: white;
             border-radius: 25px;
             margin: auto;
         }
 
         p {
             font-family: sans-serif !important;
-            font-size:medium;
+            font-size: medium;
             text-align: center;
         }
+
         a {
             text-align: center;
             color: inherit;
@@ -55,31 +66,29 @@
             left: 10;
             top: 10
         }
-
-        pinsDown{
-            border: 2px solid red;
-            border-radius: 50px 20px;
-        }
     </style>
 
 </head>
+
 <body>
     <a href="https://github.com/mylliejohnson/my-bubble-game-js">The GitHub Repo</a>
 
     <header>
         <img src="./images/bubbles.svg">
         <div>
-        <h1>DON'T POP MY BUBBLE</h1>
-        <h4>By Team Jupiter</h4>
-    </div>
+            <h1>DON'T POP MY BUBBLE</h1>
+            <h4>By Team Jupiter</h4>
+        </div>
         <img src="./images/bubbles.svg">
 
-</header>
-    <p><strong>INSTRUCTIONS</strong>: Hold down the space bar to grow the bubble, let go to release & avoid the pins to win! You get 3 lives. </p>
+    </header>
+    <p><strong>INSTRUCTIONS</strong>: Hold down the space bar to grow the bubble, let go to release & avoid the pins to
+        win! You get 3 lives. </p>
     <canvas width="800" height="500"></canvas>
 
 </body>
 <script src="main.js"></script>
 <script src="/pins-down.js"></script>
 <script src="collision.js"></script>
+
 </html>
