@@ -136,6 +136,8 @@ class downPin {
   };
 }
 
+// interval for pins
+
 let verticalPins = [];
 
 setInterval(() => {
@@ -143,8 +145,6 @@ setInterval(() => {
   verticalPins.push(pinsDown);
 }, Math.random() * 7000);
 
-// interval for pins
-// give min and max y values to be in range with the bubble **
 let pinPops = [];
 
 setInterval(() => {
