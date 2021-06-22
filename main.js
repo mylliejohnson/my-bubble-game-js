@@ -89,8 +89,8 @@ window.onkeyup = function (e) {
   }
 };
 
-let dart = new Image()
-dart.src = "./images/dart1.png"
+let dart = new Image();
+dart.src = "./images/dart1.png";
 
 // create pins
 class Pin {
@@ -113,8 +113,8 @@ class Pin {
   };
 }
 
-let dartDown = new Image()
-dartDown.src = "./images/dartdown.png"
+let dartDown = new Image();
+dartDown.src = "./images/dartdown.png";
 
 class downPin {
   constructor(x, y, w, h, color) {
@@ -213,6 +213,6 @@ function animate() {
   let life = "X";
 }
 
-ctx.font = "48px monospace";
+ctx.font = "48px Teko, san-serif";
 
 animate();
