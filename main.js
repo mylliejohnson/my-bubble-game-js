@@ -11,7 +11,11 @@
 // canvas setup
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
+let bgMusic = document.querySelector("#bgmusic");
 
+bgMusic.onload = function () {
+  bgMusic.play();
+};
 // create bubble
 class Bubble {
   constructor(x, y, r, sAngle, eAngle) {
@@ -139,7 +143,7 @@ class downPin {
 let verticalPins = [];
 
 setInterval(() => {
-  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "grey");
+  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "white");
   verticalPins.push(pinsDown);
 }, Math.random() * 7000);
 
@@ -153,7 +157,7 @@ setInterval(() => {
     40 + Math.max(Math.random() * 400),
     10,
     25,
-    "grey"
+    "white"
   );
   pinPops.push(pins);
 }, Math.random() * 5500);
@@ -188,8 +192,11 @@ function animate() {
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
       cancelAnimationFrame(animateId);
+      displayLives(lives.pop());
+
     }
   }
+
 
   for (let pinsDown of verticalPins) {
     pinsDown.move();
@@ -207,6 +214,7 @@ function animate() {
     ) {
       console.log("collision down");
       cancelAnimationFrame(animateId);
+      displayLives(lives.pop());
     }
   }
 
