@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/intro.css">
     <title>🎈Bubble Poppers💉</title>
 </head>
-<body>
+<body id="body">
     <h1 data-text="bubble pop">DON'T POP MY BUBBLE🥺</h1>
 
     <div class="container">
@@ -20,5 +20,17 @@
             <a href="./index.html">Play</a>
         </button>
     </div>
+    <div class="music">
+        <audio id="bgmusic">
+            <source src="./audio/Adventure-320bit.mp3" type="audio/mp3" />
+        </audio>
+    </div>
+    <script>
+        let backTune = document.getElementById("bgmusic");
+        let introBody = document.getElementById("body");
+        introBody.onload = function(){
+            backTune.play();
+        }
+    </script>
 </body>
 </html>
