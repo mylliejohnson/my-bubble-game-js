@@ -11,11 +11,22 @@
 // canvas setup
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
-let bgMusic = document.querySelector("#bgmusic");
 
-bgMusic.onload = function () {
-  bgMusic.play();
+//declaring background music to play and pause
+let bgMusic = document.getElementById("bgmusic");
+let icon = document.getElementById("icon");
+
+icon.onclick = function () {
+  // bgMusic.play();
+  if (bgMusic.paused) {
+    bgMusic.play();
+    icon.src = "./images/pause.png";
+  } else {
+    bgMusic.pause();
+    icon.src = "./images/play.png";
+  }
 };
+
 // create bubble
 class Bubble {
   constructor(x, y, r, sAngle, eAngle) {
@@ -143,7 +154,11 @@ class downPin {
 let verticalPins = [];
 
 setInterval(() => {
+<<<<<<< HEAD
   let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 10, 10, "grey");
+=======
+  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "white");
+>>>>>>> df2812e72b5109211bfcf41f97417163768816ea
   verticalPins.push(pinsDown);
 }, Math.random() * 7000);
 
@@ -158,7 +173,7 @@ setInterval(() => {
     10,
     10,
     25,
-    "grey"
+    "white"
   );
   pinPops.push(pins);
 }, Math.random() * 5500);
@@ -193,8 +208,11 @@ function animate() {
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
       cancelAnimationFrame(animateId);
+      displayLives(lives.pop());
+
     }
   }
+
 
   for (let pinsDown of verticalPins) {
     pinsDown.move();
@@ -212,6 +230,7 @@ function animate() {
     ) {
       console.log("collision down");
       cancelAnimationFrame(animateId);
+      displayLives(lives.pop());
     }
   }
 
