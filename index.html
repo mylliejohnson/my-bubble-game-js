@@ -70,12 +70,11 @@
 
         .music{
             display: flex;
-            justify-content:center;
-            align-items: center;
-            height: 500px;
-            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-            
-            
+            flex-direction: row;
+            justify-content: center;
+            /* align-items: center; */
+            font-size: 14px;
+            margin: auto;
         }
 
         .music p{
@@ -86,7 +85,9 @@
         }
 
         #icon{
-            width: 80px;
+            display: flex;
+            /* justify-content: center; */
+            width: 50px;
             cursor: pointer;
         }
     </style>
@@ -94,8 +95,11 @@
 </head>
 
 <body>
+   
     <a href="https://github.com/mylliejohnson/my-bubble-game-js">The GitHub Repo</a>
     
+   
+
     <header>
         <img src="./images/bubbles.svg">
         <div>
@@ -105,16 +109,27 @@
         <img src="./images/bubbles.svg">
 
     </header>
+
+    <!-- music button -->
+    <div >
+        <div class="music">
+            <p>Click here to play the music</p>
+            <img src="./images/play.png" id="icon" alt="music logo">
+        </div>
+
+        <audio id="bgmusic">
+            <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mp3" />
+        </audio>
+     </div>
+
+    <!-- instructions -->
     <p><strong>INSTRUCTIONS</strong>: Hold down the space bar to grow the bubble, let go to release & avoid the pins to
         win! You get 3 lives. </p>
+
     <canvas width="800" height="500"></canvas>
-    <div class="music">
-        <p>Click here to play the music</p>
-        <img src="./images/play.png" id="icon" alt="music logo">
-    </div>
-    <audio id="bgmusic" controls loop>
-        <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mp3" />
-    </audio>
+   
+
+  
 </body>
 <script src="main.js"></script>
 <script src="collision.js"></script>
