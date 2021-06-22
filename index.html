@@ -60,14 +60,33 @@
             border: 2px solid red;
             border-radius: 50px 20px;
         }
+
+        .music{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height: 500px;
+            
+            
+        }
+
+        .music p{
+            font-family: "Teko", san-serif;
+            font-size: 16px;
+            font-style:normal;
+            font-weight: 400;
+        }
+
+        #icon{
+            width: 80px;
+            cursor: pointer;
+        }
     </style>
 
 </head>
 <body>
     <a href="https://github.com/mylliejohnson/my-bubble-game-js">The GitHub Repo</a>
-    <audio id = "bgmusic">
-        <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mpeg" />
-      </audio>
+    
     <header>
         <img src="./images/bubbles.svg">
         <div>
@@ -79,7 +98,13 @@
 </header>
     <p><strong>INSTRUCTIONS</strong>: Hold down the space bar to grow the bubble, let go to release & avoid the pins to win! You get 3 lives. </p>
     <canvas width="800" height="500"></canvas>
-
+    <div class="music">
+        <p>Click here to play the music</p>
+        <img src="./images/play.png" id="icon" alt="music logo">
+    </div>
+    <audio id="bgmusic">
+        <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mp3" />
+    </audio>
 </body>
 <script src="main.js"></script>
 <script src="/pins-down.js"></script>
