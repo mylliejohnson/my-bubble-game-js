@@ -151,6 +151,8 @@ class downPin {
   };
 }
 
+// interval for pins
+
 let verticalPins = [];
 
 setInterval(() => {
@@ -158,8 +160,6 @@ setInterval(() => {
   verticalPins.push(pinsDown);
 }, Math.random() * 7000);
 
-// interval for pins
-// give min and max y values to be in range with the bubble **
 let pinPops = [];
 
 setInterval(() => {
@@ -206,6 +206,7 @@ function animate() {
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
       cancelAnimationFrame(animateId);
+      bgMusic.pause();
       audioPopSound.play();
       displayLives(lives.pop());
     }
@@ -226,13 +227,14 @@ function animate() {
       )
     ) {
       console.log("collision down");
+
       cancelAnimationFrame(animateId);
+
+      bgMusic.pause();
       audioPopSound.play();
       displayLives(lives.pop());
     }
   }
-
-  let life = "X";
 }
 
 ctx.font = "48px Teko, san-serif";

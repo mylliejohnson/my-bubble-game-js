@@ -72,6 +72,7 @@
             justify-content:center;
             align-items: center;
             height: 500px;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
             
             
         }
@@ -110,12 +111,11 @@
         <p>Click here to play the music</p>
         <img src="./images/play.png" id="icon" alt="music logo">
     </div>
-    <audio id="bgmusic">
+    <audio id="bgmusic" controls loop>
         <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mp3" />
     </audio>
 </body>
 <script src="main.js"></script>
-<script src="/pins-down.js"></script>
 <script src="collision.js"></script>
 
 </html>
