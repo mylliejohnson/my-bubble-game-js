@@ -158,7 +158,7 @@ let verticalPins = [];
 setInterval(() => {
   let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "white");
   verticalPins.push(pinsDown);
-}, Math.random() * 10000);
+}, Math.random() * 5500);
 
 let pinPops = [];
 
@@ -172,7 +172,7 @@ setInterval(() => {
     "white"
   );
   pinPops.push(pins);
-}, Math.random() * 10000);
+}, Math.random() * 5500);
 
 // lives
 let lives = ["X", "X", "X"];
