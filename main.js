@@ -139,7 +139,7 @@ class downPin {
 let verticalPins = [];
 
 setInterval(() => {
-  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 10, 75, "grey");
+  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 10, 10, "grey");
   verticalPins.push(pinsDown);
 }, Math.random() * 7000);
 
@@ -151,7 +151,7 @@ setInterval(() => {
   let pins = new Pin(
     canvas.width,
     40 + Math.max(Math.random() * 400),
-    75,
+    10,
     10,
     "grey"
   );
