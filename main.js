@@ -151,6 +151,8 @@ class downPin {
   };
 }
 
+// interval for pins
+
 let verticalPins = [];
 
 setInterval(() => {
@@ -158,14 +160,13 @@ setInterval(() => {
   verticalPins.push(pinsDown);
 }, Math.random() * 10000);
 
-// interval for pins
-// give min and max y values to be in range with the bubble **
 let pinPops = [];
 
 setInterval(() => {
   let pins = new Pin(
     canvas.width,
     40 + Math.max(Math.random() * 400),
+    10,
     10,
     25,
     "white"
@@ -186,6 +187,8 @@ function displayLives(lives) {
 // animate it!
 let animateId = null;
 
+let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
+
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -203,8 +206,9 @@ function animate() {
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
       cancelAnimationFrame(animateId);
+      bgMusic.pause();
+      audioPopSound.play();
       displayLives(lives.pop());
-
     }
   }
 
@@ -223,12 +227,14 @@ function animate() {
       )
     ) {
       console.log("collision down");
+
       cancelAnimationFrame(animateId);
+
+      bgMusic.pause();
+      audioPopSound.play();
       displayLives(lives.pop());
     }
   }
-
-  let life = "X";
 }
 
 ctx.font = "48px Teko, san-serif";
