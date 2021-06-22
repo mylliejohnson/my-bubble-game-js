@@ -11,7 +11,11 @@
 // canvas setup
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
+let bgMusic = document.querySelector("#bgmusic");
 
+bgMusic.onload = function () {
+  bgMusic.play();
+};
 // create bubble
 class Bubble {
   constructor(x, y, r, sAngle, eAngle) {
