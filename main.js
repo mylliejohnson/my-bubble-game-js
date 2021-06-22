@@ -13,6 +13,7 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
 //declaring background music to play and pause
+//let introMusic = new Audio("./audio/Adventure-320bit.mp3");
 let bgMusic = document.getElementById("bgmusic");
 let icon = document.getElementById("icon");
 
