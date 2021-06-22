@@ -11,7 +11,11 @@
 // canvas setup
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
+let bgMusic = document.querySelector("#bgmusic");
 
+bgMusic.onload = function () {
+  bgMusic.play();
+};
 // create bubble
 class Bubble {
   constructor(x, y, r, sAngle, eAngle) {
@@ -104,7 +108,7 @@ class Pin {
 
   draw = () => {
     ctx.fillStyle = this.color;
-    ctx.drawImage(dart, this.x, this.y, 100, 75);
+    ctx.drawImage(dart, this.x, this.y, 50, 25);
   };
 
   move = () => {
@@ -127,7 +131,7 @@ class downPin {
 
   draw = () => {
     ctx.fillStyle = this.color;
-    ctx.drawImage(dartDown, this.x, this.y, 100, 75);
+    ctx.drawImage(dartDown, this.x, this.y, 25, 50);
   };
 
   move = () => {
@@ -153,6 +157,7 @@ setInterval(() => {
     40 + Math.max(Math.random() * 400),
     10,
     10,
+    25,
     "grey"
   );
   pinPops.push(pins);
