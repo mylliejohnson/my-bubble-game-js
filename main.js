@@ -192,6 +192,7 @@ function animate() {
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
       cancelAnimationFrame(animateId);
+      
     }
   }
 
@@ -210,11 +211,11 @@ function animate() {
       )
     ) {
       console.log("collision down");
+      
       cancelAnimationFrame(animateId);
     }
   }
 
-  let life = "X";
 }
 
 ctx.font = "48px Teko, san-serif";
