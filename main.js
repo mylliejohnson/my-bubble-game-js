@@ -104,7 +104,7 @@ class Pin {
 
   draw = () => {
     ctx.fillStyle = this.color;
-    ctx.drawImage(dart, this.x, this.y, 100, 75);
+    ctx.drawImage(dart, this.x, this.y, 50, 25);
   };
 
   move = () => {
@@ -127,7 +127,7 @@ class downPin {
 
   draw = () => {
     ctx.fillStyle = this.color;
-    ctx.drawImage(dartDown, this.x, this.y, 100, 75);
+    ctx.drawImage(dartDown, this.x, this.y, 25, 50);
   };
 
   move = () => {
@@ -141,7 +141,7 @@ class downPin {
 let verticalPins = [];
 
 setInterval(() => {
-  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 10, 75, "grey");
+  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "grey");
   verticalPins.push(pinsDown);
 }, Math.random() * 7000);
 
@@ -151,8 +151,8 @@ setInterval(() => {
   let pins = new Pin(
     canvas.width,
     40 + Math.max(Math.random() * 400),
-    75,
     10,
+    25,
     "grey"
   );
   pinPops.push(pins);
