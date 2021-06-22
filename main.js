@@ -89,6 +89,9 @@ window.onkeyup = function (e) {
   }
 };
 
+let dart = new Image()
+dart.src = "./images/dart1.png"
+
 // create pins
 class Pin {
   constructor(x, y, w, h, color) {
@@ -101,7 +104,7 @@ class Pin {
 
   draw = () => {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
+    ctx.drawImage(dart, this.x, this.y, 100, 75);
   };
 
   move = () => {
@@ -109,6 +112,9 @@ class Pin {
     this.draw();
   };
 }
+
+let dartDown = new Image()
+dartDown.src = "./images/dartdown.png"
 
 class downPin {
   constructor(x, y, w, h, color) {
@@ -121,7 +127,7 @@ class downPin {
 
   draw = () => {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
+    ctx.drawImage(dartDown, this.x, this.y, 100, 75);
   };
 
   move = () => {
