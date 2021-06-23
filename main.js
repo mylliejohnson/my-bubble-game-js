@@ -191,6 +191,9 @@ function displayLives(lives) {
 let animateId = null;
 
 let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
+let audioCollectSound = new Audio(
+  "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
+);
 
 function reAnimate() {
   pinPops = [];
@@ -242,6 +245,21 @@ function animate() {
       audioPopSound.play();
       displayLives(lives.pop());
       reAnimate();
+    }
+  }
+
+  for (let chats of verticalBubbs) {
+    chats.move();
+
+    if (
+      circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+    ) {
+      console.log("bonus collision");
+      audioCollectSound.play();
+      //cancelAnimationFrame(animateId);
+      //bgMusic.pause();
+      //audioPopSound.play();
+      //displayLives(lives.pop());
     }
   }
 }
