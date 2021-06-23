@@ -318,19 +318,19 @@ function animate() {
         pop(bubble);
       }
     }
-    if (
-      collisionCircle(
-        bubble.position.x,
-        bubble.position.y,
-        bubble.radius,
-        bubb.x,
-        bubb.y,
-        bubb.r
-      )
-    ) {
-      bubb.r += 0.01;
-      pop(bubble);
-    }
+    // if (
+    //   collisionCircle(
+    //     bubble.position.x,
+    //     bubble.position.y,
+    //     bubble.radius,
+    //     bubb.x,
+    //     bubb.y,
+    //     bubb.r
+    //   )
+    // ) {
+    //   bubb.r += 0.01;
+    //   pop(bubble);
+    // }
   }
 }
 
