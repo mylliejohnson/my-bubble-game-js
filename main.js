@@ -229,7 +229,6 @@ function animate() {
       console.log("collision down");
 
       cancelAnimationFrame(animateId);
-
       bgMusic.pause();
       audioPopSound.play();
       displayLives(lives.pop());
