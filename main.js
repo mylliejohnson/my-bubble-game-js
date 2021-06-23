@@ -196,6 +196,8 @@ let audioCollectSound = new Audio(
 );
 
 function reAnimate() {
+  ctx.clearRect(this.x, this.y, 25, 50);
+  ctx.clearRect(this.x, this.y, 50, 25);
   pinPops = [];
   pins = [];
 }
