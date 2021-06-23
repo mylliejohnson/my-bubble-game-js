@@ -53,7 +53,6 @@ let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 10, 0, 1 * Math.PI);
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
     score = bubb.r++ -9; // add score count here *************
-    this.move = pins++;
   }
   if (e.key === "ArrowRight") {
     bubb.x += 19; // increase speed bubble moves across bored 
@@ -88,42 +87,40 @@ window.onkeydown = function (e) {
 
 let score = bubb.r - 10; // starts score at 0
 // let level = 0; // if we want to have levels?
-window.onkeyup = function (e) {
-  if (e.key === " ") {
-    // bubb.r = 10; // if we want circle to reset once spacebar is released keep this
-    bubb.r = this.bubb.r
-  }
-  // switch (e.key === " ") {
-  //   case bubb.r < 50:
-  //     score += 25;
-  //     break;
-  //   case bubb.r < 100:
-  //     score += 75;
-  //     break;
-  //   case bubb.r < 150:
-  //     score += 100;
-  //     break;
-  //   case bubb.r > 150:
-  //     score += 200;
-  //     break;
-  // }
-};
+// window.onkeyup = function (e) {
+//   if (e.key === " ") {
+//     // bubb.r = 10; // if we want circle to reset once spacebar is released keep this
+//     bubb.r = this.bubb.r
+//   }
+//   switch (e.key === " ") {
+//     case bubb.r < 50:
+//       score += 25;
+//       break;
+//     case bubb.r < 100:
+//       score += 75;
+//       break;
+//     case bubb.r < 150:
+//       score += 100;
+//       break;
+//     case bubb.r > 150:
+//       score += 200;
+//       break;
+//   }
+// };
 
 let dart = new Image();
 dart.src = "./images/dart1.png";
 
 // create pins
 class Pin {
-  constructor(x, y, w, h, color) {
+  constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.color = color;
   }
 
   draw = () => {
-    ctx.fillStyle = this.color;
     ctx.drawImage(dart, this.x, this.y, 50, 25);
   };
 
@@ -137,16 +134,14 @@ let dartDown = new Image();
 dartDown.src = "./images/dartdown.png";
 
 class downPin {
-  constructor(x, y, w, h, color) {
+  constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.color = color;
   }
 
   draw = () => {
-    ctx.fillStyle = this.color;
     ctx.drawImage(dartDown, this.x, this.y, 25, 50);
   };
 
@@ -161,7 +156,7 @@ class downPin {
 let verticalPins = [];
 
 setInterval(() => {
-  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "white");
+  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50);
   verticalPins.push(pinsDown);
 }, 2000);
 
@@ -174,20 +169,20 @@ setInterval(() => {
     10,
     10,
     25,
-    "white"
   );
   pinPops.push(pins);
 }, 2000);
 
 // lives
 let lives = ["X", "X", "X"];
-function displayLives(lives) {
+function displayLives() {
   let i = 0;
   for (let life of lives) {
     i += 40;
     ctx.fillText(life, canvas.width - 175 + i, canvas.height - 25);
   }
 }
+
 
 // animate it!
 let animateId = null;
@@ -199,6 +194,7 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   bubb.draw();
+
 
   ctx.fillText(score, 20, 50);
 
@@ -213,7 +209,6 @@ function animate() {
       cancelAnimationFrame(animateId);
       bgMusic.pause();
       audioPopSound.play();
-      displayLives(lives.pop());
     }
   }
 
@@ -232,13 +227,15 @@ function animate() {
       )
     ) {
       console.log("collision down");
-
       cancelAnimationFrame(animateId);
-
       bgMusic.pause();
       audioPopSound.play();
-      displayLives(lives.pop());
     }
+  }
+
+  if(lives.length == 3) {
+    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+    ctx.font = "100px Teko, sans-serif"
   }
 }
 
