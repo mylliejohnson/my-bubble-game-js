@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bubbles</title>
+    <link rel="icon" type="image/png" href="https://example.com/favicon.png"/>
+
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap');
@@ -21,7 +23,7 @@
             font-size: 1.5em;
             overflow: hidden;
         }
- 
+
         h1,
         h4 {
             text-align: center;
@@ -64,7 +66,7 @@
             top: 10
         }
 
-        .music{
+        .music {
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -73,14 +75,14 @@
             margin: 0;
         }
 
-        .music p{
+        .music p {
             font-family: "Teko", san-serif;
             font-size: 16px;
-            font-style:normal;
+            font-style: normal;
             font-weight: 400;
         }
 
-        #icon{
+        #icon {
             display: flex;
             width: 50px;
             cursor: pointer;
@@ -91,7 +93,7 @@
 </head>
 
 <body>
-   
+
     <a href="https://github.com/mylliejohnson/my-bubble-game-js">The GitHub Repo</a>
     
     <header>
@@ -105,27 +107,30 @@
     </header>
 
     <!-- music button -->
-    <div >
+    <div>
         <div class="music">
             <p>Click here to play the music</p>
             <img src="./images/play.png" id="icon" alt="music logo">
         </div>
 
         <audio id="bgmusic">
-            <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mp3" />
+            <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mp3" loop="loop" />
         </audio>
-     </div>
+    </div>
 
     <!-- instructions -->
     <p><strong>INSTRUCTIONS</strong>: Hold down the space bar to grow the bubble, let go to release & avoid the pins to
         win! You get 3 lives. </p>
 
     <canvas width="800" height="500"></canvas>
-   
 
-  
+
+
 </body>
+<script src="background.js"></script>
 <script src="main.js"></script>
 <script src="collision.js"></script>
+<script src="collectors.js"></script>
+
 
 </html>
