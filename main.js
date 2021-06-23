@@ -316,7 +316,7 @@ function animate() {
       }
     }
   }
-}
+
 
 // if(lives.length == 3) {
 //   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
