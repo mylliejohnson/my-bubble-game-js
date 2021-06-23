@@ -52,36 +52,35 @@ let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 10, 0, 1 * Math.PI);
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
-    score = bubb.r++ -9; // add score count here *************
+    score = bubb.r++ - 9; // add score count here *************
     // this.move = pins++;
   }
   if (e.key === "ArrowRight") {
-    bubb.x += 10; // increase speed bubble moves across bored 
+    bubb.x += 10; // increase speed bubble moves across bored
     if (bubb.x > canvas.width - bubb.r) {
       bubb.x -= 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
-    bubb.x -= 10; // increase speed bubble moves across bored 
+    bubb.x -= 10; // increase speed bubble moves across bored
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
-    bubb.y -= 10; // increase speed bubble moves across bored 
+    bubb.y -= 10; // increase speed bubble moves across bored
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
-    bubb.y += 10; // increase speed bubble moves across bored 
+    bubb.y += 10; // increase speed bubble moves across bored
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
-
     }
   }
 };
@@ -91,21 +90,21 @@ let score = bubb.r - 10; // starts score at 0
 // window.onkeyup = function (e) {
 //   if (e.key === " ") {
 //     bubb.r = 10; // if we want circle to reset once spacebar is released keep this
-  // }
-  // switch (e.key === " ") {
-  //   case bubb.r < 50:
-  //     score += 25;
-  //     break;
-  //   case bubb.r < 100:
-  //     score += 75;
-  //     break;
-  //   case bubb.r < 150:
-  //     score += 100;
-  //     break;
-  //   case bubb.r > 150:
-  //     score += 200;
-  //     break;
-  // }
+// }
+// switch (e.key === " ") {
+//   case bubb.r < 50:
+//     score += 25;
+//     break;
+//   case bubb.r < 100:
+//     score += 75;
+//     break;
+//   case bubb.r < 150:
+//     score += 100;
+//     break;
+//   case bubb.r > 150:
+//     score += 200;
+//     break;
+// }
 // };
 
 let dart = new Image();
@@ -192,6 +191,9 @@ function displayLives(lives) {
 let animateId = null;
 
 let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
+let audioCollectSound = new Audio(
+  "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
+);
 
 function animate() {
   animateId = requestAnimationFrame(animate);
@@ -237,6 +239,21 @@ function animate() {
       bgMusic.pause();
       audioPopSound.play();
       displayLives(lives.pop());
+    }
+  }
+
+  for (let chats of verticalBubbs) {
+    chats.move();
+
+    if (
+      circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+    ) {
+      console.log("bonus collision");
+      audioCollectSound.play();
+      //cancelAnimationFrame(animateId);
+      //bgMusic.pause();
+      //audioPopSound.play();
+      //displayLives(lives.pop());
     }
   }
 }
