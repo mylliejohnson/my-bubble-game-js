@@ -15,7 +15,7 @@ class Lovebubb {
   };
 
   move = () => {
-    this.y += 1;
+    this.y += 3;
     this.draw();
   };
 }
@@ -25,4 +25,4 @@ let verticalBubbs = [];
 setInterval(() => {
   let bubbsDown = new Lovebubb(Math.max(Math.random() * 700), 0, 50, 50);
   verticalBubbs.push(bubbsDown);
-}, 3000);
+}, 6000);

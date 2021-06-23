@@ -191,7 +191,9 @@ function displayLives() {
 let animateId = null;
 
 let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
-
+let audioLoveBubbs = new Audio(
+  "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
+);
 function pop(bubble) {
   for (var a = 0; a < bubble.lines.length; a++) {
     popDistance = bubble.radius * 0.5;
@@ -228,7 +230,7 @@ function animate() {
       verticalPins = [];
       bubb.r = 30;
       lives.pop();
-      pop(bubble);
+      //pop(bubble);
     }
 
     //Bubble pins
@@ -285,7 +287,7 @@ function animate() {
       verticalPins = [];
       bubb.r = 30;
       lives.pop();
-      pop(bubble);
+      //pop(bubble);
     }
 
     //Bubble pins
@@ -316,6 +318,16 @@ function animate() {
         bubb.r += 0.01;
         pop(bubble);
       }
+    }
+    //Bonus love bubbles
+    for (let chats of verticalBubbs) {
+      chats.move();
+      if (
+        circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+      )
+        console.log("bonus score");
+      //audioLoveBubbs.play();
+      // pinsDown.clear();
     }
   }
 }
