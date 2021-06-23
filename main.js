@@ -13,6 +13,7 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
 //declaring background music to play and pause
+//let introMusic = new Audio("./audio/Adventure-320bit.mp3");
 let bgMusic = document.getElementById("bgmusic");
 let icon = document.getElementById("icon");
 
@@ -48,60 +49,64 @@ class Bubble {
 // the bubble
 let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 10, 0, 1 * Math.PI);
 
-// key functions
+// key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
-    bubb.r++;
+    score = bubb.r++ -9; // add score count here *************
+    this.move = pins++;
   }
   if (e.key === "ArrowRight") {
-    bubb.x += 10;
+    bubb.x += 19; // increase speed bubble moves across bored 
     if (bubb.x > canvas.width - bubb.r) {
       bubb.x -= 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
-    bubb.x -= 10;
+    bubb.x -= 19; // increase speed bubble moves across bored 
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
-    bubb.y -= 10;
+    bubb.y -= 19; // increase speed bubble moves across bored 
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
-    bubb.y += 10;
+    bubb.y += 19; // increase speed bubble moves across bored 
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
+
     }
   }
 };
 
-let score = 0;
+let score = bubb.r - 10; // starts score at 0
+// let level = 0; // if we want to have levels?
 window.onkeyup = function (e) {
   if (e.key === " ") {
-    bubb.r = 10;
+    // bubb.r = 10; // if we want circle to reset once spacebar is released keep this
+    bubb.r = this.bubb.r
   }
-  switch (e.key === " ") {
-    case bubb.r < 50:
-      score += 25;
-      break;
-    case bubb.r < 100:
-      score += 75;
-      break;
-    case bubb.r < 150:
-      score += 100;
-      break;
-    case bubb.r > 150:
-      score += 200;
-      break;
-  }
+  // switch (e.key === " ") {
+  //   case bubb.r < 50:
+  //     score += 25;
+  //     break;
+  //   case bubb.r < 100:
+  //     score += 75;
+  //     break;
+  //   case bubb.r < 150:
+  //     score += 100;
+  //     break;
+  //   case bubb.r > 150:
+  //     score += 200;
+  //     break;
+  // }
 };
 
 let dart = new Image();
@@ -123,7 +128,7 @@ class Pin {
   };
 
   move = () => {
-    this.x -= 10;
+    this.x -= 4; // slow pins down, maybe increase as level gets harder?
     this.draw();
   };
 }
@@ -158,7 +163,7 @@ let verticalPins = [];
 setInterval(() => {
   let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "white");
   verticalPins.push(pinsDown);
-}, Math.random() * 7000);
+}, 2000);
 
 let pinPops = [];
 
@@ -172,7 +177,7 @@ setInterval(() => {
     "white"
   );
   pinPops.push(pins);
-}, Math.random() * 5500);
+}, 2000);
 
 // lives
 let lives = ["X", "X", "X"];
