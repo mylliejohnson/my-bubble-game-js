@@ -47,36 +47,36 @@ class Bubble {
 }
 
 // the bubble
-let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 50, 0, 1 * Math.PI);
+let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 30, 0, 1 * Math.PI);
 
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
-    score = bubb.r++ -9; // add score count here *************
+    score = 0; // add score count here *************
   }
   if (e.key === "ArrowRight") {
-    bubb.x += 10; // increase speed bubble moves across bored
-    if (bubb.x > canvas.width - bubb.r) {
+    bubb.x += 19; // increase speed bubble moves across bored
+    if (bubb.x > canvas.width) {
       bubb.x -= 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
-    bubb.x -= 10; // increase speed bubble moves across bored 
+    bubb.x -= 19; // increase speed bubble moves across bored 
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
-    bubb.y -= 10; // increase speed bubble moves across bored 
+    bubb.y -= 19; // increase speed bubble moves across bored 
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
-    bubb.y += 10; // increase speed bubble moves across bored 
+    bubb.y += 19; // increase speed bubble moves across bored 
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
@@ -85,7 +85,7 @@ window.onkeydown = function (e) {
   }
 };
 
-let score = bubb.r - 10; // starts score at 0
+let score = 0; // starts score at 0
 // let level = 0; // if we want to have levels?
 // window.onkeyup = function (e) {
 //   if (e.key === " ") {
@@ -182,7 +182,7 @@ setInterval(() => {
     25,
   );
   pinPops.push(pins);
-}, 4000);
+}, 8000);
 
 // lives
 let lives = ["X", "X", "X"];
@@ -241,7 +241,8 @@ function animate() {
       pinPops = [];
       verticalPins = [];
       bubb.r = 10;
-     lives.pop();
+      lives.pop();
+      pop(bubble);
     }
 
 
@@ -273,6 +274,7 @@ function animate() {
       verticalPins = [];
       bubb.r = 10;
       lives.pop();
+      pop(bubble);
     }
 
       //Bubble pins
@@ -284,6 +286,7 @@ function animate() {
         }
         if (collisionCircle(bubble.position.x, bubble.position.y, bubble.radius, bubb.x, bubb.y, bubb.r)){
           bubb.r += .01;
+          pop(bubble);
         }
       }
   }
