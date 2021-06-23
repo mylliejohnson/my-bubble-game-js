@@ -42,11 +42,7 @@ let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 30, 0, 1 * Math.PI);
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
-<<<<<<< HEAD
-    score = bubb.r++ - 9; // add score count here *************
-=======
     score = 0; // add score count here *************
->>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
   }
   if (e.key === "ArrowRight") {
     bubb.x += 19; // increase speed bubble moves across bored
@@ -56,33 +52,21 @@ window.onkeydown = function (e) {
     }
   }
   if (e.key === "ArrowLeft") {
-<<<<<<< HEAD
-    bubb.x -= 10; // increase speed bubble moves across bored
-=======
-    bubb.x -= 19; // increase speed bubble moves across bored 
->>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
+    bubb.x -= 19; // increase speed bubble moves across bored
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
-<<<<<<< HEAD
-    bubb.y -= 10; // increase speed bubble moves across bored
-=======
-    bubb.y -= 19; // increase speed bubble moves across bored 
->>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
+    bubb.y -= 19; // increase speed bubble moves across bored
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
-<<<<<<< HEAD
-    bubb.y += 10; // increase speed bubble moves across bored
-=======
-    bubb.y += 19; // increase speed bubble moves across bored 
->>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
+    bubb.y += 19; // increase speed bubble moves across bored
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
@@ -223,7 +207,7 @@ function animate() {
   drawBubbles();
   bubb.draw();
 
-  bubb.r = Math.max(10, bubb.r - 0.02);
+  bubb.r = Math.max(30, bubb.r - 0.02);
 
   ctx.fillText(score, 20, 50);
 
@@ -242,12 +226,9 @@ function animate() {
       // pins.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 10;
+      bubb.r = 30;
       lives.pop();
-<<<<<<< HEAD
-=======
       pop(bubble);
->>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
     }
 
     //Bubble pins
@@ -302,12 +283,11 @@ function animate() {
       // pinsDown.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 10;
+      bubb.r = 30;
       lives.pop();
       pop(bubble);
     }
 
-<<<<<<< HEAD
     //Bubble pins
     for (let bubble of bubbles) {
       if (
@@ -334,28 +314,16 @@ function animate() {
         )
       ) {
         bubb.r += 0.01;
-=======
-      //Bubble pins
-      for(let bubble of bubbles){
-     
-        if (circleRect(bubble.position.x, bubble.position.y, bubble.radius, pinsDown.x, pinsDown.y, pinsDown.w, pinsDown.h)) {
-          
-          pop(bubble)
-        }
-        if (collisionCircle(bubble.position.x, bubble.position.y, bubble.radius, bubb.x, bubb.y, bubb.r)){
-          bubb.r += .01;
-          pop(bubble);
-        }
->>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
+        pop(bubble);
       }
     }
   }
-
-  // if(lives.length == 3) {
-  //   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-  //   ctx.font = "100px Teko, sans-serif"
-  // }
 }
+
+// if(lives.length == 3) {
+//   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+//   ctx.font = "100px Teko, sans-serif"
+// }
 
 ctx.font = "48px Teko, san-serif";
 
