@@ -158,7 +158,7 @@ let verticalPins = [];
 setInterval(() => {
   let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50);
   verticalPins.push(pinsDown);
-}, 4000);
+}, 2000);
 
 let pinPops = [];
 
@@ -171,7 +171,7 @@ setInterval(() => {
     25
   );
   pinPops.push(pins);
-}, 8000);
+}, 2000);
 
 // lives
 let lives = ["X", "X", "X"];
@@ -209,7 +209,7 @@ function animate() {
   drawBubbles();
   bubb.draw();
 
-  bubb.r = Math.max(30, bubb.r - 0.02);
+  bubb.r = Math.max(10, bubb.r - 0.02);
 
   ctx.fillText(score, 20, 50);
 
@@ -228,9 +228,8 @@ function animate() {
       // pins.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 30;
+      bubb.r = 10;
       lives.pop();
-      //pop(bubble);
     }
 
     //Bubble pins
@@ -285,9 +284,8 @@ function animate() {
       // pinsDown.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 30;
+      bubb.r = 10;
       lives.pop();
-      //pop(bubble);
     }
 
     //Bubble pins
@@ -316,6 +314,7 @@ function animate() {
         )
       ) {
         bubb.r += 0.01;
+        score += 1;
         pop(bubble);
       }
     }
