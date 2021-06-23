@@ -37,36 +37,52 @@ class Bubble {
 }
 
 // the bubble
-let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 50, 0, 1 * Math.PI);
+let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 30, 0, 1 * Math.PI);
 
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
+<<<<<<< HEAD
     score = bubb.r++ - 9; // add score count here *************
+=======
+    score = 0; // add score count here *************
+>>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
   }
   if (e.key === "ArrowRight") {
-    bubb.x += 10; // increase speed bubble moves across bored
-    if (bubb.x > canvas.width - bubb.r) {
+    bubb.x += 19; // increase speed bubble moves across bored
+    if (bubb.x > canvas.width) {
       bubb.x -= 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
+<<<<<<< HEAD
     bubb.x -= 10; // increase speed bubble moves across bored
+=======
+    bubb.x -= 19; // increase speed bubble moves across bored 
+>>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
+<<<<<<< HEAD
     bubb.y -= 10; // increase speed bubble moves across bored
+=======
+    bubb.y -= 19; // increase speed bubble moves across bored 
+>>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
+<<<<<<< HEAD
     bubb.y += 10; // increase speed bubble moves across bored
+=======
+    bubb.y += 19; // increase speed bubble moves across bored 
+>>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
@@ -74,7 +90,7 @@ window.onkeydown = function (e) {
   }
 };
 
-let score = bubb.r - 10; // starts score at 0
+let score = 0; // starts score at 0
 // let level = 0; // if we want to have levels?
 // window.onkeyup = function (e) {
 //   if (e.key === " ") {
@@ -171,7 +187,7 @@ setInterval(() => {
     25
   );
   pinPops.push(pins);
-}, 4000);
+}, 8000);
 
 // lives
 let lives = ["X", "X", "X"];
@@ -228,6 +244,10 @@ function animate() {
       verticalPins = [];
       bubb.r = 10;
       lives.pop();
+<<<<<<< HEAD
+=======
+      pop(bubble);
+>>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
     }
 
     //Bubble pins
@@ -284,8 +304,10 @@ function animate() {
       verticalPins = [];
       bubb.r = 10;
       lives.pop();
+      pop(bubble);
     }
 
+<<<<<<< HEAD
     //Bubble pins
     for (let bubble of bubbles) {
       if (
@@ -312,6 +334,19 @@ function animate() {
         )
       ) {
         bubb.r += 0.01;
+=======
+      //Bubble pins
+      for(let bubble of bubbles){
+     
+        if (circleRect(bubble.position.x, bubble.position.y, bubble.radius, pinsDown.x, pinsDown.y, pinsDown.w, pinsDown.h)) {
+          
+          pop(bubble)
+        }
+        if (collisionCircle(bubble.position.x, bubble.position.y, bubble.radius, bubb.x, bubb.y, bubb.r)){
+          bubb.r += .01;
+          pop(bubble);
+        }
+>>>>>>> 0f19683f943629ddc6b132192c47ca94c420d781
       }
     }
   }
