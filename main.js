@@ -210,7 +210,7 @@ function animate() {
   drawBubbles()
   bubb.draw();
 
-  bubb.r = Math.max(10, bubb.r-.02)
+  bubb.r = Math.max(30, bubb.r-.02)
 
   ctx.fillText(score, 20, 50);
 
@@ -231,7 +231,7 @@ function animate() {
       // pins.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 10;
+      bubb.r = 30;
       lives.pop();
       pop(bubble);
     }
@@ -263,7 +263,7 @@ function animate() {
       // pinsDown.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 10;
+      bubb.r = 30;
       lives.pop();
       pop(bubble);
     }
@@ -282,10 +282,10 @@ function animate() {
       }
   }
 
-  if(lives.length == 3) {
-    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-    ctx.font = "100px Teko, sans-serif"
-  }
+  // if(lives.length == 3) {
+  //   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+  //   ctx.font = "100px Teko, sans-serif"
+  // }
 }
 
 ctx.font = "48px Teko, san-serif";
