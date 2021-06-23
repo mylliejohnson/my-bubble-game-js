@@ -1,16 +1,6 @@
-// TO DO LIST:
-// reset bubble onkeyup ------- GOT IT :)
-// delete an X (life) when collision
-// send in pins one at a time ----------- GOT IT :)
-// give pins min and max so they're only in range of the bubble
-// create vertical pins ? maybe
-// DETECT COLLISION!!
-// create a start intro ? maybe
-// animateId = null ??
-
 // canvas setup
-const canvas = document.querySelector("canvas");
-const ctx = canvas.getContext("2d");
+// const canvas = document.querySelector("canvas");
+// const ctx = canvas.getContext("2d");
 
 //declaring background music to play and pause
 //let introMusic = new Audio("./audio/Adventure-320bit.mp3");
@@ -47,13 +37,12 @@ class Bubble {
 }
 
 // the bubble
-let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 10, 0, 1 * Math.PI);
+let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 50, 0, 1 * Math.PI);
 
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
     score = bubb.r++ - 9; // add score count here *************
-    // this.move = pins++;
   }
   if (e.key === "ArrowRight") {
     bubb.x += 10; // increase speed bubble moves across bored
@@ -89,7 +78,9 @@ let score = bubb.r - 10; // starts score at 0
 // let level = 0; // if we want to have levels?
 // window.onkeyup = function (e) {
 //   if (e.key === " ") {
-//     bubb.r = 10; // if we want circle to reset once spacebar is released keep this
+//     bubb.r = 10;
+//    }
+//    } // if we want circle to reset once spacebar is released keep this
 // }
 // switch (e.key === " ") {
 //   case bubb.r < 50:
@@ -112,22 +103,25 @@ dart.src = "./images/dart1.png";
 
 // create pins
 class Pin {
-  constructor(x, y, w, h, color) {
+  constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.color = color;
   }
 
   draw = () => {
-    ctx.fillStyle = this.color;
     ctx.drawImage(dart, this.x, this.y, 50, 25);
   };
 
   move = () => {
-    this.x -= 4; // slow pins down, maybe increase as level gets harder?
+    this.x -= 6; // slow pins down, maybe increase as level gets harder?
     this.draw();
+  };
+
+  clear = () => {
+    ctx.clearRect(this.x, this.y, 50, 25);
+    console.log("clear across");
   };
 }
 
@@ -135,22 +129,25 @@ let dartDown = new Image();
 dartDown.src = "./images/dartdown.png";
 
 class downPin {
-  constructor(x, y, w, h, color) {
+  constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-    this.color = color;
   }
 
   draw = () => {
-    ctx.fillStyle = this.color;
     ctx.drawImage(dartDown, this.x, this.y, 25, 50);
   };
 
   move = () => {
-    this.y += 10;
+    this.y += 6; // slow pins down, maybe increase as level gets harder?
     this.draw();
+  };
+
+  clear = () => {
+    ctx.clearRect(this.x, this.y, 25, 50);
+    console.log("clear down");
   };
 }
 
@@ -159,9 +156,9 @@ class downPin {
 let verticalPins = [];
 
 setInterval(() => {
-  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50, "white");
+  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50);
   verticalPins.push(pinsDown);
-}, 2000);
+}, 4000);
 
 let pinPops = [];
 
@@ -171,19 +168,22 @@ setInterval(() => {
     40 + Math.max(Math.random() * 400),
     10,
     10,
-    25,
-    "white"
+    25
   );
   pinPops.push(pins);
-}, 2000);
+}, 4000);
 
 // lives
 let lives = ["X", "X", "X"];
-function displayLives(lives) {
+function displayLives() {
   let i = 0;
   for (let life of lives) {
     i += 40;
     ctx.fillText(life, canvas.width - 175 + i, canvas.height - 25);
+  }
+  if (lives.length == 0) {
+    cancelAnimationFrame(animateId);
+    console.log("game over");
   }
 }
 
@@ -191,41 +191,76 @@ function displayLives(lives) {
 let animateId = null;
 
 let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
-let audioCollectSound = new Audio(
-  "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
-);
 
-function reAnimate() {
-  ctx.clearRect(this.x, this.y, 25, 50);
-  ctx.clearRect(this.x, this.y, 50, 25);
-  pinPops = [];
-  pins = [];
+function pop(bubble) {
+  for (var a = 0; a < bubble.lines.length; a++) {
+    popDistance = bubble.radius * 0.5;
+    bubble.lines[a].popping = true;
+    bubble.popping = true;
+  }
 }
 
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  drawBubbles();
   bubb.draw();
+
+  bubb.r = Math.max(10, bubb.r - 0.02);
 
   ctx.fillText(score, 20, 50);
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
 
+  // detect collision horizontal pins
   for (let pins of pinPops) {
     pins.move();
 
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
-      cancelAnimationFrame(animateId);
-      bgMusic.pause();
+      // cancelAnimationFrame(animateId);
+      // bgMusic.pause();
       audioPopSound.play();
-      displayLives(lives.pop());
-      reAnimate();
+      // pins.clear();
+      pinPops = [];
+      verticalPins = [];
+      bubb.r = 10;
+      lives.pop();
+    }
+
+    //Bubble pins
+    for (let bubble of bubbles) {
+      if (
+        circleRect(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          pins.x,
+          pins.y,
+          pins.w,
+          pins.h
+        )
+      ) {
+        pop(bubble);
+      }
+      if (
+        collisionCircle(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          bubb.x,
+          bubb.y,
+          bubb.r
+        )
+      ) {
+        bubb.r += 0.01;
+      }
     }
   }
 
+  // detect collision vertical pins
   for (let pinsDown of verticalPins) {
     pinsDown.move();
 
@@ -241,27 +276,43 @@ function animate() {
       )
     ) {
       console.log("collision down");
-
-      cancelAnimationFrame(animateId);
-      bgMusic.pause();
+      // cancelAnimationFrame(animateId);
+      // bgMusic.pause();
       audioPopSound.play();
-      displayLives(lives.pop());
-      reAnimate();
+      // pinsDown.clear();
+      pinPops = [];
+      verticalPins = [];
+      bubb.r = 10;
+      lives.pop();
     }
-  }
 
-  for (let chats of verticalBubbs) {
-    chats.move();
-
-    if (
-      circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
-    ) {
-      console.log("bonus collision");
-      audioCollectSound.play();
-      //cancelAnimationFrame(animateId);
-      //bgMusic.pause();
-      //audioPopSound.play();
-      //displayLives(lives.pop());
+    //Bubble pins
+    for (let bubble of bubbles) {
+      if (
+        circleRect(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          pinsDown.x,
+          pinsDown.y,
+          pinsDown.w,
+          pinsDown.h
+        )
+      ) {
+        pop(bubble);
+      }
+      if (
+        collisionCircle(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          bubb.x,
+          bubb.y,
+          bubb.r
+        )
+      ) {
+        bubb.r += 0.01;
+      }
     }
   }
 }
