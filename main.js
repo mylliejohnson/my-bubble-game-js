@@ -210,7 +210,7 @@ function animate() {
   drawBubbles()
   bubb.draw();
 
-  bubb.r = Math.max(30, bubb.r-.02)
+  bubb.r = Math.max(10, bubb.r-.02)
 
   ctx.fillText(score, 20, 50);
 
@@ -231,7 +231,7 @@ function animate() {
       // pins.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 30;
+      bubb.r = 10;
       lives.pop();
       pop(bubble);
     }
@@ -263,7 +263,7 @@ function animate() {
       // pinsDown.clear();
       pinPops = [];
       verticalPins = [];
-      bubb.r = 30;
+      bubb.r = 10;
       lives.pop();
       pop(bubble);
     }
@@ -277,6 +277,7 @@ function animate() {
         }
         if (collisionCircle(bubble.position.x, bubble.position.y, bubble.radius, bubb.x, bubb.y, bubb.r)){
           bubb.r += .01;
+          score += 1;
           pop(bubble);
         }
       }
