@@ -1,13 +1,3 @@
-// TO DO LIST:
-// reset bubble onkeyup ------- GOT IT :)
-// delete an X (life) when collision
-// send in pins one at a time ----------- GOT IT :)
-// give pins min and max so they're only in range of the bubble
-// create vertical pins ? maybe
-// DETECT COLLISION!!
-// create a start intro ? maybe
-// animateId = null ??
-
 // canvas setup
 // const canvas = document.querySelector("canvas");
 // const ctx = canvas.getContext("2d");
@@ -186,7 +176,7 @@ setInterval(() => {
 
 // lives
 let lives = ["X", "X", "X"];
-function displayLives(lives) {
+function displayLives() {
   let i = 0;
   for (let life of lives) {
     i += 40;
@@ -196,6 +186,7 @@ function displayLives(lives) {
     console.log('game over');
   }
   }
+
 
 // animate it!
 let animateId = null;
@@ -289,6 +280,11 @@ function animate() {
           pop(bubble);
         }
       }
+  }
+
+  if(lives.length == 3) {
+    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+    ctx.font = "100px Teko, sans-serif"
   }
 }
 
