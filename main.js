@@ -53,31 +53,31 @@ let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 10, 0, 1 * Math.PI);
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
     score = bubb.r++ -9; // add score count here *************
-    this.move = pins++;
+    // this.move = pins++;
   }
   if (e.key === "ArrowRight") {
-    bubb.x += 19; // increase speed bubble moves across bored 
+    bubb.x += 10; // increase speed bubble moves across bored 
     if (bubb.x > canvas.width - bubb.r) {
       bubb.x -= 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
-    bubb.x -= 19; // increase speed bubble moves across bored 
+    bubb.x -= 10; // increase speed bubble moves across bored 
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
-    bubb.y -= 19; // increase speed bubble moves across bored 
+    bubb.y -= 10; // increase speed bubble moves across bored 
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
-    bubb.y += 19; // increase speed bubble moves across bored 
+    bubb.y += 10; // increase speed bubble moves across bored 
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
@@ -88,11 +88,10 @@ window.onkeydown = function (e) {
 
 let score = bubb.r - 10; // starts score at 0
 // let level = 0; // if we want to have levels?
-window.onkeyup = function (e) {
-  if (e.key === " ") {
-    // bubb.r = 10; // if we want circle to reset once spacebar is released keep this
-    bubb.r = this.bubb.r
-  }
+// window.onkeyup = function (e) {
+//   if (e.key === " ") {
+//     bubb.r = 10; // if we want circle to reset once spacebar is released keep this
+  // }
   // switch (e.key === " ") {
   //   case bubb.r < 50:
   //     score += 25;
@@ -107,7 +106,7 @@ window.onkeyup = function (e) {
   //     score += 200;
   //     break;
   // }
-};
+// };
 
 let dart = new Image();
 dart.src = "./images/dart1.png";
