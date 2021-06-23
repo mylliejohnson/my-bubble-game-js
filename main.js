@@ -195,6 +195,11 @@ let audioCollectSound = new Audio(
   "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
 );
 
+function reAnimate() {
+  pinPops = [];
+  pins = [];
+}
+
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -215,6 +220,7 @@ function animate() {
       bgMusic.pause();
       audioPopSound.play();
       displayLives(lives.pop());
+      reAnimate();
     }
   }
 
@@ -235,10 +241,10 @@ function animate() {
       console.log("collision down");
 
       cancelAnimationFrame(animateId);
-
       bgMusic.pause();
       audioPopSound.play();
       displayLives(lives.pop());
+      reAnimate();
     }
   }
 
