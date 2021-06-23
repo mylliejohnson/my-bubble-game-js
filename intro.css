@@ -126,7 +126,7 @@ h1::after {
     0 0 80px #0ff, 0 0 90px #0ff, 0 0 100px #0ff, 0 0 150px #0ff;
 }
 
-.container .btn {
+.btn {
   width: 250px;
   height: 100px;
   margin: 80px;
