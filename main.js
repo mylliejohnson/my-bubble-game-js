@@ -52,25 +52,24 @@ window.onkeydown = function (e) {
     }
   }
   if (e.key === "ArrowLeft") {
-    bubb.x -= 19; // increase speed bubble moves across bored 
+    bubb.x -= 19; // increase speed bubble moves across bored
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
-    bubb.y -= 19; // increase speed bubble moves across bored 
+    bubb.y -= 19; // increase speed bubble moves across bored
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
-    bubb.y += 19; // increase speed bubble moves across bored 
+    bubb.y += 19; // increase speed bubble moves across bored
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
-
     }
   }
 };
@@ -82,21 +81,21 @@ let score = 0; // starts score at 0
 //     bubb.r = 10;
 //    }
 //    } // if we want circle to reset once spacebar is released keep this
-  // }
-  // switch (e.key === " ") {
-  //   case bubb.r < 50:
-  //     score += 25;
-  //     break;
-  //   case bubb.r < 100:
-  //     score += 75;
-  //     break;
-  //   case bubb.r < 150:
-  //     score += 100;
-  //     break;
-  //   case bubb.r > 150:
-  //     score += 200;
-  //     break;
-  // }
+// }
+// switch (e.key === " ") {
+//   case bubb.r < 50:
+//     score += 25;
+//     break;
+//   case bubb.r < 100:
+//     score += 75;
+//     break;
+//   case bubb.r < 150:
+//     score += 100;
+//     break;
+//   case bubb.r > 150:
+//     score += 200;
+//     break;
+// }
 // };
 
 let dart = new Image();
@@ -122,8 +121,8 @@ class Pin {
 
   clear = () => {
     ctx.clearRect(this.x, this.y, 50, 25);
-    console.log('clear across')
-  }
+    console.log("clear across");
+  };
 }
 
 let dartDown = new Image();
@@ -148,7 +147,7 @@ class downPin {
 
   clear = () => {
     ctx.clearRect(this.x, this.y, 25, 50);
-    console.log('clear down')
+    console.log("clear down");
   };
 }
 
@@ -169,7 +168,7 @@ setInterval(() => {
     40 + Math.max(Math.random() * 400),
     10,
     10,
-    25,
+    25
   );
   pinPops.push(pins);
 }, 8000);
@@ -181,20 +180,19 @@ function displayLives() {
   for (let life of lives) {
     i += 40;
     ctx.fillText(life, canvas.width - 175 + i, canvas.height - 25);
-  } if (lives.length == 0) {
+  }
+  if (lives.length == 0) {
     cancelAnimationFrame(animateId);
-    console.log('game over');
+    console.log("game over");
   }
-  }
-
+}
 
 // animate it!
 let animateId = null;
 
 let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
 
-
-function pop(bubble){
+function pop(bubble) {
   for (var a = 0; a < bubble.lines.length; a++) {
     popDistance = bubble.radius * 0.5;
     bubble.lines[a].popping = true;
@@ -202,12 +200,11 @@ function pop(bubble){
   }
 }
 
-
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  drawBubbles()
+  drawBubbles();
   bubb.draw();
 
   bubb.r = Math.max(10, bubb.r-.02)
@@ -220,8 +217,6 @@ function animate() {
   // detect collision horizontal pins
   for (let pins of pinPops) {
     pins.move();
-
-
 
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
@@ -236,27 +231,52 @@ function animate() {
       pop(bubble);
     }
 
-
     //Bubble pins
-    for(let bubble of bubbles){
-     
-      if (circleRect(bubble.position.x, bubble.position.y, bubble.radius, pins.x, pins.y, pins.w, pins.h)) {
-        
-        pop(bubble)
+    for (let bubble of bubbles) {
+      if (
+        circleRect(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          pins.x,
+          pins.y,
+          pins.w,
+          pins.h
+        )
+      ) {
+        pop(bubble);
       }
-      if (collisionCircle(bubble.position.x, bubble.position.y, bubble.radius, bubb.x, bubb.y, bubb.r)){
-        bubb.r += .01;
+      if (
+        collisionCircle(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          bubb.x,
+          bubb.y,
+          bubb.r
+        )
+      ) {
+        bubb.r += 0.01;
       }
     }
-
   }
 
   // detect collision vertical pins
   for (let pinsDown of verticalPins) {
     pinsDown.move();
 
-    if (circleRect(bubb.x, bubb.y, bubb.r, pinsDown.x, pinsDown.y, pinsDown.w, pinsDown.h)) {
-      console.log("collision down"); 
+    if (
+      circleRect(
+        bubb.x,
+        bubb.y,
+        bubb.r,
+        pinsDown.x,
+        pinsDown.y,
+        pinsDown.w,
+        pinsDown.h
+      )
+    ) {
+      console.log("collision down");
       // cancelAnimationFrame(animateId);
       // bgMusic.pause();
       audioPopSound.play();
@@ -281,13 +301,27 @@ function animate() {
           pop(bubble);
         }
       }
+      if (
+        collisionCircle(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          bubb.x,
+          bubb.y,
+          bubb.r
+        )
+      ) {
+        bubb.r += 0.01;
+        pop(bubble);
+      }
+    }
   }
-
-  // if(lives.length == 3) {
-  //   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-  //   ctx.font = "100px Teko, sans-serif"
-  // }
 }
+
+// if(lives.length == 3) {
+//   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+//   ctx.font = "100px Teko, sans-serif"
+// }
 
 ctx.font = "48px Teko, san-serif";
 
