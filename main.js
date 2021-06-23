@@ -52,36 +52,35 @@ let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 10, 0, 1 * Math.PI);
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
   if (e.key === " " && bubb.r < 175) {
-    score = bubb.r++ -9; // add score count here *************
+    score = bubb.r++ - 9; // add score count here *************
     this.move = pins++;
   }
   if (e.key === "ArrowRight") {
-    bubb.x += 19; // increase speed bubble moves across bored 
+    bubb.x += 19; // increase speed bubble moves across bored
     if (bubb.x > canvas.width - bubb.r) {
       bubb.x -= 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
-    bubb.x -= 19; // increase speed bubble moves across bored 
+    bubb.x -= 19; // increase speed bubble moves across bored
     if (bubb.x < 0 + bubb.r) {
       bubb.x += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
-    bubb.y -= 19; // increase speed bubble moves across bored 
+    bubb.y -= 19; // increase speed bubble moves across bored
     if (bubb.y < 0 + bubb.r) {
       bubb.y += 10;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
-    bubb.y += 19; // increase speed bubble moves across bored 
+    bubb.y += 19; // increase speed bubble moves across bored
     if (bubb.y > canvas.height - bubb.r) {
       bubb.y -= 10;
       console.log("Out of bounds");
-
     }
   }
 };
@@ -91,7 +90,7 @@ let score = bubb.r - 10; // starts score at 0
 window.onkeyup = function (e) {
   if (e.key === " ") {
     // bubb.r = 10; // if we want circle to reset once spacebar is released keep this
-    bubb.r = this.bubb.r
+    bubb.r = this.bubb.r;
   }
   // switch (e.key === " ") {
   //   case bubb.r < 50:
