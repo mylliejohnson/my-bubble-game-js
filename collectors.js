@@ -15,14 +15,17 @@ class Lovebubb {
   };
 
   move = () => {
-    this.y += 1;
+    this.y += 3;
     this.draw();
   };
 }
 
 let verticalBubbs = [];
+console.log(lives);
 
-setInterval(() => {
-  let bubbsDown = new Lovebubb(Math.random(verticalBubbs) * 600, 0, 50, 50);
-  verticalBubbs.push(bubbsDown);
-}, 5000);
+function startDropBubbs() {
+  setInterval(() => {
+    let bubbsDown = new Lovebubb(Math.random(verticalBubbs) * 600, 0, 50, 50);
+    verticalBubbs.push(bubbsDown);
+  }, 5000);
+}
