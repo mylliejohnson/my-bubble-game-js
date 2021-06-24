@@ -70,7 +70,7 @@ window.onkeydown = function (e) {
   if (e.key === "ArrowDown") {
     bubb.y += 19; // increase speed bubble moves across bored
     if (bubb.y + bubb.r > canvas.height) {
-      bubb.y = +bubb.y - bubb.r ;
+      bubb.y = +bubb.y - bubb.r;
       console.log("Out of bounds");
     }
   }
@@ -219,7 +219,7 @@ function animate() {
   drawBubbles();
   bubb.draw();
 
-  bubb.r = Math.max(10, bubb.r-.02)
+  bubb.r = Math.max(10, bubb.r - 0.02);
 
   ctx.fillText(score, 20, 50);
 
@@ -242,7 +242,6 @@ function animate() {
       verticalPins = [];
       bubb.r = 10;
       lives.pop();
-    
     }
 
     //Bubble pins
@@ -300,18 +299,20 @@ function animate() {
       lives.pop();
     }
 
-      //Bubble pins
-      for(let bubble of bubbles){
-     
-        if (circleRect(bubble.position.x, bubble.position.y, bubble.radius, pinsDown.x, pinsDown.y, pinsDown.w, pinsDown.h)) {
-          
-          pop(bubble)
-        }
-        if (collisionCircle(bubble.position.x, bubble.position.y, bubble.radius, bubb.x, bubb.y, bubb.r)){
-          bubb.r += .01;
-          score += 1;
-          pop(bubble);
-        }
+    //Bubble pins
+    for (let bubble of bubbles) {
+      if (
+        circleRect(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          pinsDown.x,
+          pinsDown.y,
+          pinsDown.w,
+          pinsDown.h
+        )
+      ) {
+        pop(bubble);
       }
       if (
         collisionCircle(
@@ -328,40 +329,23 @@ function animate() {
         pop(bubble);
       }
     }
+  }
 
-    //Bonus love bubbles
-    if (lives.length <= 1) {
-      for (let chats of verticalBubbs) {
-        chats.move();
-        if (
-          circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
-        ) {
-          console.log("bonus score");
-          audioLoveBubbs.play();
-          verticalBubbs = [];
-          lives.push("X");
-          // pinsDown.clear();
-        }
-        //score 100 points if bubble touches the love bubbles
-        // if (
-        //   collectibubbles(
-        //     chats.position.x,
-        //     chats.position.y,
-        //     chats.radius,
-        //     bubb.x,
-        //     bubb.y,
-        //     bubb.r
-        //   )
-        // ) {
-        //   //bubb.r += 0.01;
-        //   score += 100;
-        //   pop(chats);
-        // }
+  //Bonus love bubbles
+  if (lives.length <= 1) {
+    for (let chats of verticalBubbs) {
+      chats.move();
+      if (
+        circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+      ) {
+        console.log("bonus score");
+        audioLoveBubbs.play();
+        verticalBubbs = [];
+        lives.push("X");
+        // pinsDown.clear();
       }
     }
   }
-<<<<<<< HEAD
-=======
 
   if (lives.length === 0) {
     let gameover = ctx.fillText(
@@ -372,7 +356,6 @@ function animate() {
     gameover.font = "300px Teko, sans-serif";
   }
 }
->>>>>>> 35072059259badd0c810b15c34250e3e4fc3cd97
 
 ctx.font = "48px Teko, san-serif";
 
