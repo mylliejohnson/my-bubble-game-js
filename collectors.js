@@ -27,6 +27,7 @@ setInterval(() => {
   verticalBubbs.push(bubbsDown);
 }, 3000);
 
+//maybe create a function to call it in main.js file to update score by 100 points
 // function collectibubbles(p1x, p1y, r1, p2x, p2y, r2) {
 //   var a;
 //   var x;
