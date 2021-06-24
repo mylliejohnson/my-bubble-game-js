@@ -37,7 +37,7 @@ var mouseOffset = {
 
 function drawBubbles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  console.log("animate?");
+  // console.log("animate?");
 
   // ------------
   // Draw Bubbles

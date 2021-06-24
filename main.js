@@ -78,6 +78,10 @@ window.onkeydown = function (e) {
 };
 
 let score = 0;
+console.log(score)
+let allScores = []
+let highScores = []
+console.log(highScores)
 
 let dart = new Image();
 dart.src = "./images/dart1.png";
@@ -205,9 +209,7 @@ function animate() {
 
   bubb.r = Math.max(10, bubb.r - 0.02);
 
- if(!bubb.gameover){
   ctx.fillText(score, 20, 50);
- }
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
@@ -316,6 +318,11 @@ function animate() {
         pop(bubble);
       }
     }
+    let allScores = []
+    if (lives.length === 0 && score > 0) {
+      allScores.push(score);
+      console.log(allScores)
+    }
   }
 
   //Bonus love bubbles
@@ -334,7 +341,7 @@ function animate() {
     }
   }
 
-  if(lives.length == 0 ){
+  if(lives.length === 0) {
     bubb.gameover = true
     ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300)
     let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 100, canvas.height/2)
@@ -343,7 +350,6 @@ function animate() {
     ctx.fillText("Press the SPACEBAR to start a new game", canvas.width/2 - 210, canvas.height/2 + 50)
     ctx.font = "48px Teko, san-serif";
   }
-
 }
 
 ctx.font = "48px Teko, san-serif";
