@@ -309,7 +309,7 @@ function animate() {
   }
 
   // ------ GAMEOVER ----- //
-  if(lives.length === 0 ){
+  if(lives.length == 0 ){
     bubb.gameover = true
 
     ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300)
@@ -320,11 +320,13 @@ function animate() {
   }
 } //end of animate function
 
-animate();
+ctx.font = "48px Teko, sans-serif"
 
 // --- GAME RESET --- //
-window.onkeypress = function (e) {
-  if (e.key === " " && bubb.gameover) {
-    window.location.reload();
+window.onkeypress = function(e){
+  if(e.key === " " && bubb.gameover){
+    window.location.reload
   }
-};
+}
+
+animate();

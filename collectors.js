@@ -22,7 +22,7 @@ class Lovebubb {
 
 let verticalBubbs = [];
 console.log(lives);
-// if (lives.length <= 2){
+
 function startDropBubbs() {
   setInterval(() => {
     let bubbsDown = new Lovebubb(Math.random(verticalBubbs) * 600, 0, 50, 50);
