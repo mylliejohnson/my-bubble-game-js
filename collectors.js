@@ -21,8 +21,11 @@ class Lovebubb {
 }
 
 let verticalBubbs = [];
-
-setInterval(() => {
-  let bubbsDown = new Lovebubb(Math.max(Math.random() * 700), 0, 50, 50);
-  verticalBubbs.push(bubbsDown);
-}, 7000);
+console.log(lives);
+// if (lives.length <= 2){
+function startDropBubbs() {
+  setInterval(() => {
+    let bubbsDown = new Lovebubb(Math.random(verticalBubbs) * 600, 0, 50, 50);
+    verticalBubbs.push(bubbsDown);
+  }, 5000);
+}
