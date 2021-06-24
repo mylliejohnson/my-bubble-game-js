@@ -271,7 +271,7 @@ function animate() {
           bubb.r
         )
       ) {
-        bubb.r += 0.01;
+        bubb.r += 0.02;
       }
     }
   }
@@ -324,7 +324,7 @@ function animate() {
           bubb.r
         )
       ) {
-        bubb.r += 0.01;
+        bubb.r += 0.02;
         score += 1;
         pop(bubble);
       }
@@ -338,6 +338,8 @@ function animate() {
       ) {
         console.log("bonus score");
         audioLoveBubbs.play();
+        verticalPins = [];
+        lives.push();
         // pinsDown.clear();
       }
       //score 100 points if bubble touches the love bubbles
@@ -357,11 +359,17 @@ function animate() {
       // }
     }
   }
+<<<<<<< HEAD
+=======
 
-// if(lives.length == 3) {
-//   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-//   ctx.font = "100px Teko, sans-serif"
-// }
+  if(lives.length === 0) {
+    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+    gameover.font = "300px Teko, sans-serif"
+  }
+  
+}
+>>>>>>> 35072059259badd0c810b15c34250e3e4fc3cd97
+
 
 ctx.font = "48px Teko, san-serif";
 
