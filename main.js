@@ -50,56 +50,34 @@ window.onkeydown = function (e) {
   if (e.key === "ArrowRight") {
     bubb.x += 19; // increase speed bubble moves across bored
     if (bubb.x > canvas.width) {
-      bubb.x -= 10;
+      bubb.x = canvas.width - bubb.r;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
     bubb.x -= 19; // increase speed bubble moves across bored
-    if (bubb.x < 0 + bubb.r) {
-      bubb.x += 10;
+    if (bubb.x + bubb.r < 0) {
+      bubb.x = -bubb.x + bubb.r;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
     bubb.y -= 19; // increase speed bubble moves across bored
-    if (bubb.y < 0 + bubb.r) {
-      bubb.y += 10;
+    if (bubb.y + bubb.r < 0) {
+      bubb.y = -bubb.y + bubb.r;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
     bubb.y += 19; // increase speed bubble moves across bored
-    if (bubb.y > canvas.height - bubb.r) {
-      bubb.y -= 10;
+    if (bubb.y > canvas.height) {
+      bubb.y = +bubb.y - bubb.r;
       console.log("Out of bounds");
     }
   }
 };
 
-let score = 0; // starts score at 0
-// let level = 0; // if we want to have levels?
-// window.onkeyup = function (e) {
-//   if (e.key === " ") {
-//     bubb.r = 10;
-//    }
-//    } // if we want circle to reset once spacebar is released keep this
-// }
-// switch (e.key === " ") {
-//   case bubb.r < 50:
-//     score += 25;
-//     break;
-//   case bubb.r < 100:
-//     score += 75;
-//     break;
-//   case bubb.r < 150:
-//     score += 100;
-//     break;
-//   case bubb.r > 150:
-//     score += 200;
-//     break;
-// }
-// };
+let score = 0; 
 
 let dart = new Image();
 dart.src = "./images/dart1.png";
@@ -168,7 +146,7 @@ let pinPops = [];
 setInterval(() => {
   let pins = new Pin(
     canvas.width,
-    40 + Math.max(Math.random() * 400),
+    40 + (Math.random() * 360),
     10,
     10,
     25
@@ -273,7 +251,7 @@ function animate() {
           bubb.r
         )
       ) {
-        bubb.r += 0.01;
+        bubb.r += 0.02;
       }
     }
   }
@@ -297,7 +275,6 @@ function animate() {
       // cancelAnimationFrame(animateId);
       // bgMusic.pause();
       audioPopSound.play();
-      // pinsDown.clear();
       pinPops = [];
       verticalPins = [];
       bubb.r = 10;
@@ -337,8 +314,10 @@ function animate() {
         pop(bubble);
       }
     }
+  }
 
-    //Bonus love bubbles
+  //Bonus love bubbles
+  if (lives.length <= 1) {
     for (let chats of verticalBubbs) {
       chats.move();
       if (
@@ -346,25 +325,10 @@ function animate() {
       ) {
         console.log("bonus score");
         audioLoveBubbs.play();
-        verticalPins = [];
-        lives.push();
+        verticalBubbs = [];
+        lives.push("X");
         // pinsDown.clear();
       }
-      //score 100 points if bubble touches the love bubbles
-      // if (
-      //   collectibubbles(
-      //     chats.position.x,
-      //     chats.position.y,
-      //     chats.radius,
-      //     bubb.x,
-      //     bubb.y,
-      //     bubb.r
-      //   )
-      // ) {
-      //   //bubb.r += 0.01;
-      //   score += 100;
-      //   pop(chats);
-      // }
     }
   }
 
