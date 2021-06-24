@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./intro.css">
     <title>🎈Bubble Poppers💉</title>
 </head>
-<body>
+<body value="PLAY" onclick="play()">
     <h1 data-text="bubble pop">DON'T POP MY BUBBLE🥺</h1>
 
     <div class="container">
@@ -19,14 +19,35 @@
             <a href="./intro.html">PLAY</a>
         </button>
     </div>
-    
+    <!-- <img src="./images/backgroundbubb.jpg" value="PLAY" onclick="play()"> -->
     <audio src="./audio/Adventure-320bit.mp3" type="audio/mp3" id="my_audio" loop="loop"></audio>
     
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         window.onload = function () {
             document.getElementById("my_audio").play();
           };
-    </script>
+    </script> -->
+    <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#my_audio").mouseover(function(){
+            $("#my_audio")[0].play();
+        })
+
+        $("#my_audio").mouseleave (function (){
+
+            $("#my_audio")[0].pause();
+
+        });
+    });
+</script> -->
+<script>
+    function play(){
+        let audio = document.getElementById("my_audio");
+        audio.play();
+    }
+</script>
+
 </body>
 
 </html>
