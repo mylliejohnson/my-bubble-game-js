@@ -322,11 +322,8 @@ function animate() {
     );
     ctx.font = "48px Teko, san-serif";
   }
-} //end of animate function
-
-animate();
-
-ctx.font = "48px Teko, san-serif";
+}
+//end of animate function
 
 // --- GAME RESET --- //
 window.onkeypress = function (e) {
@@ -334,3 +331,7 @@ window.onkeypress = function (e) {
     window.location.reload();
   }
 };
+
+ctx.font = "48px Teko, san-serif";
+
+animate();
