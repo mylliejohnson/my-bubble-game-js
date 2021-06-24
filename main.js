@@ -191,6 +191,7 @@ function animate() {
     startDropBubbs();
     bubbsdropping = true;
   }
+  
   displayLives(lives);
 
   if (!bubb.gameover) {
@@ -327,10 +328,10 @@ function animate() {
 
 // --- GAME RESET --- //
 window.onkeypress = function(e){
-  if(e.key === " " && bubb.gameover){
+  if(e.key == " " && bubb.gameover){
     window.location.reload
   }
-};
+}
 
 ctx.font = "48px Teko, san-serif";
 
