@@ -49,28 +49,28 @@ window.onkeydown = function (e) {
   if (e.key === "ArrowRight") {
     bubb.x += 19; // increase speed bubble moves across bored
     if (bubb.x > canvas.width) {
-      bubb.x = 0;
+      bubb.x = canvas.width - bubb.r;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowLeft") {
     bubb.x -= 19; // increase speed bubble moves across bored
-    if (bubb.x < 0) {
-      bubb.x = 0;
+    if (bubb.x + bubb.r < 0) {
+      bubb.x = -bubb.x + bubb.r;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowUp") {
     bubb.y -= 19; // increase speed bubble moves across bored
-    if (bubb.y < 0) {
-      bubb.y = 0;
+    if (bubb.y + bubb.r < 0) {
+      bubb.y = -bubb.y + bubb.r;
       console.log("Out of bounds");
     }
   }
   if (e.key === "ArrowDown") {
     bubb.y += 19; // increase speed bubble moves across bored
-    if (bubb.y + bubb.r >= canvas.height) {
-      bubb.y = 0 - bubb.r ;
+    if (bubb.y + bubb.r > canvas.height) {
+      bubb.y = +bubb.y - bubb.r ;
       console.log("Out of bounds");
     }
   }
