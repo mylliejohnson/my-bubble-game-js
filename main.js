@@ -309,13 +309,17 @@ function animate() {
   }
 
   // ------ GAMEOVER ----- //
-  if(lives.length === 0 ){
-    bubb.gameover = true
+  if (lives.length === 0) {
+    bubb.gameover = true;
 
-    ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300)
-    ctx.fillText("GAME OVER", canvas.width/2 - 100, canvas.height/2)
+    ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300);
+    ctx.fillText("GAME OVER", canvas.width / 2 - 100, canvas.height / 2);
     ctx.font = "28px Teko, san-serif";
-    ctx.fillText("Press the SPACEBAR to start a new game", canvas.width/2 - 210, canvas.height/2 + 50)
+    ctx.fillText(
+      "Press the SPACEBAR to start a new game",
+      canvas.width / 2 - 210,
+      canvas.height / 2 + 50
+    );
     ctx.font = "48px Teko, san-serif";
   }
 } //end of animate function
