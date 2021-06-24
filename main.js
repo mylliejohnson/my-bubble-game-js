@@ -70,14 +70,14 @@ window.onkeydown = function (e) {
   }
   if (e.key === "ArrowDown") {
     bubb.y += 19; // increase speed bubble moves across bored
-    if (bubb.y > canvas.height) {
-      bubb.y = +bubb.y - bubb.r;
+    if (bubb.y > canvas.height ) {
+      bubb.y = canvas.height - bubb.r;
       console.log("Out of bounds");
     }
   }
 };
 
-let score = 0; 
+let score = 0;
 
 let dart = new Image();
 dart.src = "./images/dart1.png";
@@ -340,9 +340,6 @@ function animate() {
 
     ctx.fillText("Press the SPACEBAR to start a new game", canvas.width/2 - 210, canvas.height/2 + 50)
     ctx.font = "48px Teko, san-serif";
-
-
-
   }
 
 }
@@ -354,4 +351,4 @@ window.onkeypress = function(e){
   if(e.key === " " && bubb.gameover){
     window.location.reload()
   }
-}
+} 
