@@ -15,7 +15,7 @@ class Lovebubb {
   };
 
   move = () => {
-    this.y += 1;
+    this.y += 3;
     this.draw();
   };
 }
