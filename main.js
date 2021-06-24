@@ -327,9 +327,9 @@ function animate() {
 //end of animate function
 
 // --- GAME RESET --- //
-window.onkeypress = function(e){
-  if(e.key == " " && bubb.gameover){
-    window.location.reload
+window.onkeypress = function (e) {
+  if (e.key === " " && bubb.gameover) {
+    window.location.reload();
   }
 }
 
