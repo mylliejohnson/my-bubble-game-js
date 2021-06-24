@@ -190,11 +190,11 @@ function displayLives() {
   }
 }
 
-function gameover(){
- let gameoverId = document.querySelector('#gameover')
- gameoverId.style.display = 'block'
- 
- ctx.fillText(gameoverId, canvas.width/2, canvas.height/2)
+function gameover() {
+  let gameoverId = document.querySelector("#gameover");
+  gameoverId.style.display = "block";
+
+  ctx.fillText(gameoverId, canvas.width / 2, canvas.height / 2);
 }
 
 // animate it!
@@ -225,8 +225,7 @@ function animate() {
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
-  for(let dead of lives){
-    
+  for (let dead of lives) {
   }
 
   // detect collision horizontal pins
@@ -333,42 +332,46 @@ function animate() {
     }
 
     //Bonus love bubbles
-    for (let chats of verticalBubbs) {
-      chats.move();
-      if (
-        circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
-      ) {
-        console.log("bonus score");
-        audioLoveBubbs.play();
-        verticalPins = [];
-        lives.push();
-        // pinsDown.clear();
+    if (lives.length <= 1) {
+      for (let chats of verticalBubbs) {
+        chats.move();
+        if (
+          circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+        ) {
+          console.log("bonus score");
+          audioLoveBubbs.play();
+          verticalBubbs = [];
+          lives.push("X");
+          // pinsDown.clear();
+        }
+        //score 100 points if bubble touches the love bubbles
+        // if (
+        //   collectibubbles(
+        //     chats.position.x,
+        //     chats.position.y,
+        //     chats.radius,
+        //     bubb.x,
+        //     bubb.y,
+        //     bubb.r
+        //   )
+        // ) {
+        //   //bubb.r += 0.01;
+        //   score += 100;
+        //   pop(chats);
+        // }
       }
-      //score 100 points if bubble touches the love bubbles
-      // if (
-      //   collectibubbles(
-      //     chats.position.x,
-      //     chats.position.y,
-      //     chats.radius,
-      //     bubb.x,
-      //     bubb.y,
-      //     bubb.r
-      //   )
-      // ) {
-      //   //bubb.r += 0.01;
-      //   score += 100;
-      //   pop(chats);
-      // }
     }
   }
 
-  if(lives.length === 0) {
-    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-    gameover.font = "300px Teko, sans-serif"
+  if (lives.length === 0) {
+    let gameover = ctx.fillText(
+      "GAME OVER",
+      canvas.width / 2 - 200,
+      canvas.height / 2 - 50
+    );
+    gameover.font = "300px Teko, sans-serif";
   }
-  
 }
-
 
 ctx.font = "48px Teko, san-serif";
 
