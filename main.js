@@ -45,7 +45,7 @@ window.onkeydown = function (e) {
     score = bubb.r++ -9; // add score count here *************
   }
   if (e.key === "ArrowRight") {
-    bubb.x += 10; // increase speed bubble moves across bored
+    bubb.x += 20; // increase speed bubble moves across bored
     if (bubb.x > canvas.width - bubb.r) {
       bubb.x -= 10;
       console.log("Out of bounds");
@@ -188,6 +188,13 @@ function displayLives() {
   }
 
 
+function gameover(){
+ let gameoverId = document.querySelector('#gameover')
+ gameoverId.style.display = 'block'
+ 
+ ctx.fillText(gameoverId, canvas.width/2, canvas.height/2)
+}
+
 // animate it!
 let animateId = null;
 
@@ -202,7 +209,6 @@ function pop(bubble){
   }
 }
 
-
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -216,6 +222,9 @@ function animate() {
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
+  for(let dead of lives){
+    
+  }
 
   // detect collision horizontal pins
   for (let pins of pinPops) {
@@ -277,12 +286,7 @@ function animate() {
           bubb.r += .01;
         }
       }
-  }
-
-  if(lives.length == 3) {
-    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-    ctx.font = "100px Teko, sans-serif"
-  }
+      }
 }
 
 ctx.font = "48px Teko, san-serif";
