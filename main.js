@@ -6,6 +6,8 @@
 //let introMusic = new Audio("./audio/Adventure-320bit.mp3");
 let bgMusic = document.getElementById("bgmusic");
 let icon = document.getElementById("icon");
+//setting background music volume to 0.7 so we can hear pop sound loud and clear
+document.getElementById("bgmusic").volume = 0.7;
 
 icon.onclick = function () {
   // bgMusic.play();
@@ -184,14 +186,24 @@ function displayLives() {
   if (lives.length == 0) {
     cancelAnimationFrame(animateId);
     console.log("game over");
+    bgMusic.pause(); //background music stops when all lives are finished
   }
+}
+
+function gameover(){
+ let gameoverId = document.querySelector('#gameover')
+ gameoverId.style.display = 'block'
+ 
+ ctx.fillText(gameoverId, canvas.width/2, canvas.height/2)
 }
 
 // animate it!
 let animateId = null;
 
 let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
-
+let audioLoveBubbs = new Audio(
+  "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
+);
 function pop(bubble) {
   for (var a = 0; a < bubble.lines.length; a++) {
     popDistance = bubble.radius * 0.5;
@@ -213,6 +225,9 @@ function animate() {
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
+  for(let dead of lives){
+    
+  }
 
   // detect collision horizontal pins
   for (let pins of pinPops) {
@@ -299,18 +314,46 @@ function animate() {
           pop(bubble);
         }
       }
+      if (
+        collisionCircle(
+          bubble.position.x,
+          bubble.position.y,
+          bubble.radius,
+          bubb.x,
+          bubb.y,
+          bubb.r
+        )
+      ) {
+        bubb.r += 0.01;
+        score += 1;
+        pop(bubble);
+      }
+    }
+
+    //Bonus love bubbles
+    for (let chats of verticalBubbs) {
+      chats.move();
+      if (
+        circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+      ) {
+        console.log("bonus score");
+        audioLoveBubbs.play();
+        // pinsDown.clear();
+      }
+      //score 100 points if bubble touches the love bubbles
       // if (
-      //   collisionCircle(
-      //     bubble.position.x,
-      //     bubble.position.y,
-      //     bubble.radius,
+      //   collectibubbles(
+      //     chats.position.x,
+      //     chats.position.y,
+      //     chats.radius,
       //     bubb.x,
       //     bubb.y,
       //     bubb.r
       //   )
       // ) {
-      //   bubb.r += 0.01;
-      //   pop(bubble);
+      //   //bubb.r += 0.01;
+      //   score += 100;
+      //   pop(chats);
       // }
     }
   }
