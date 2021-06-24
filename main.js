@@ -6,6 +6,8 @@
 //let introMusic = new Audio("./audio/Adventure-320bit.mp3");
 let bgMusic = document.getElementById("bgmusic");
 let icon = document.getElementById("icon");
+//setting background music volume to 0.7 so we can hear pop sound loud and clear
+document.getElementById("bgmusic").volume = 0.7;
 
 icon.onclick = function () {
   // bgMusic.play();
@@ -184,6 +186,7 @@ function displayLives() {
   if (lives.length == 0) {
     cancelAnimationFrame(animateId);
     console.log("game over");
+    bgMusic.pause(); //background music stops when all lives are finished
   }
 }
 
@@ -318,15 +321,32 @@ function animate() {
         pop(bubble);
       }
     }
+
     //Bonus love bubbles
     for (let chats of verticalBubbs) {
       chats.move();
       if (
         circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
-      )
+      ) {
         console.log("bonus score");
-      //audioLoveBubbs.play();
-      // pinsDown.clear();
+        audioLoveBubbs.play();
+        // pinsDown.clear();
+      }
+      //score 100 points if bubble touches the love bubbles
+      // if (
+      //   collectibubbles(
+      //     chats.position.x,
+      //     chats.position.y,
+      //     chats.radius,
+      //     bubb.x,
+      //     bubb.y,
+      //     bubb.r
+      //   )
+      // ) {
+      //   //bubb.r += 0.01;
+      //   score += 100;
+      //   pop(chats);
+      // }
     }
   }
 }
