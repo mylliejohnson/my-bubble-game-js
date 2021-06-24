@@ -179,7 +179,7 @@ function pop(bubble) {
  ----------------------- */
 
 let animateId = null;
-
+let bubbsdropping = false;
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -187,7 +187,10 @@ function animate() {
   // ----- DRAW & DISPLAY ----- //
   drawBubbles();
   bubb.draw();
-
+  if (lives.length <= 2 && !bubbsdropping) {
+    startDropBubbs();
+    bubbsdropping = true;
+  }
   displayLives(lives);
 
   if (!bubb.gameover) {
@@ -292,32 +295,26 @@ function animate() {
   }
 
   // -------- EXTRA LIVES -------- //
-  if (lives.length <= 2) {
-    for (let chats of verticalBubbs) {
-      chats.move();
-      if (
-        circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
-      ) {
-        console.log("bonus score");
-        audioLoveBubbs.play();
-        verticalBubbs = [];
-        lives.push("X");
-      }
+
+  for (let chats of verticalBubbs) {
+    chats.move();
+    if (
+      circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+    ) {
+      console.log("bonus score");
+      audioLoveBubbs.play();
+      verticalBubbs = [];
+      lives.push("X");
     }
   }
 
   // ------ GAMEOVER ----- //
-  if (lives.length == 0) {
+  if (lives.length === 0) {
     bubb.gameover = true;
 
     ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300);
-    let gameover = ctx.fillText(
-      "GAME OVER",
-      canvas.width / 2 - 100,
-      canvas.height / 2
-    );
+    ctx.fillText("GAME OVER", canvas.width / 2 - 100, canvas.height / 2);
     ctx.font = "28px Teko, san-serif";
-
     ctx.fillText(
       "Press the SPACEBAR to start a new game",
       canvas.width / 2 - 210,
@@ -326,8 +323,6 @@ function animate() {
     ctx.font = "48px Teko, san-serif";
   }
 } //end of animate function
-
-ctx.font = "48px Teko, san-serif";
 
 animate();
 
