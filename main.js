@@ -179,7 +179,7 @@ function pop(bubble) {
  ----------------------- */
 
 let animateId = null;
-
+let bubbsdropping = false;
 function animate() {
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -187,7 +187,10 @@ function animate() {
   // ----- DRAW & DISPLAY ----- //
   drawBubbles();
   bubb.draw();
-
+  if (lives.length <= 2 && !bubbsdropping) {
+    startDropBubbs();
+    bubbsdropping = true;
+  }
   displayLives(lives);
 
   if (!bubb.gameover) {
@@ -292,17 +295,16 @@ function animate() {
   }
 
   // -------- EXTRA LIVES -------- //
-  if (lives.length <= 1 || lives.length === 2) {
-    for (let chats of verticalBubbs) {
-      chats.move();
-      if (
-        circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
-      ) {
-        console.log("bonus score");
-        audioLoveBubbs.play();
-        verticalBubbs = [];
-        lives.push("X");
-      }
+
+  for (let chats of verticalBubbs) {
+    chats.move();
+    if (
+      circleRect(bubb.x, bubb.y, bubb.r, chats.x, chats.y, chats.w, chats.h)
+    ) {
+      console.log("bonus score");
+      audioLoveBubbs.play();
+      verticalBubbs = [];
+      lives.push("X");
     }
   }
 
