@@ -205,7 +205,9 @@ function animate() {
 
   bubb.r = Math.max(10, bubb.r - 0.02);
 
+ if(!bubb.gameover){
   ctx.fillText(score, 20, 50);
+ }
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
@@ -332,7 +334,7 @@ function animate() {
     }
   }
 
-  if(lives.length === 0) {
+  if(lives.length == 0 ){
     bubb.gameover = true
     ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300)
     let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 100, canvas.height/2)
