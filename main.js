@@ -28,13 +28,16 @@ class Bubble {
     this.r = r;
     this.sAngle = sAngle;
     this.eAngle = eAngle;
+    this.gameover = false
   }
 
   draw = () => {
+    if(!this.gameover){
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
     ctx.fillStyle = "#A9D0F5";
     ctx.fill();
+    }
   };
 }
 
@@ -43,9 +46,7 @@ let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 30, 0, 1 * Math.PI);
 
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
-  if (e.key === " " && bubb.r < 175) {
-    score = 0; // add score count here *************
-  }
+   
   if (e.key === "ArrowRight") {
     bubb.x += 19; // increase speed bubble moves across bored
     if (bubb.x > canvas.width) {
@@ -69,36 +70,14 @@ window.onkeydown = function (e) {
   }
   if (e.key === "ArrowDown") {
     bubb.y += 19; // increase speed bubble moves across bored
-    if (bubb.y + bubb.r > canvas.height) {
+    if (bubb.y > canvas.height) {
       bubb.y = +bubb.y - bubb.r;
       console.log("Out of bounds");
     }
   }
 };
 
-let score = 0; // starts score at 0
-// let level = 0; // if we want to have levels?
-// window.onkeyup = function (e) {
-//   if (e.key === " ") {
-//     bubb.r = 10;
-//    }
-//    } // if we want circle to reset once spacebar is released keep this
-// }
-// switch (e.key === " ") {
-//   case bubb.r < 50:
-//     score += 25;
-//     break;
-//   case bubb.r < 100:
-//     score += 75;
-//     break;
-//   case bubb.r < 150:
-//     score += 100;
-//     break;
-//   case bubb.r > 150:
-//     score += 200;
-//     break;
-// }
-// };
+let score = 0; 
 
 let dart = new Image();
 dart.src = "./images/dart1.png";
@@ -167,7 +146,7 @@ let pinPops = [];
 setInterval(() => {
   let pins = new Pin(
     canvas.width,
-    40 + Math.max(Math.random() * 400),
+    40 + (Math.random() * 360),
     10,
     10,
     25
@@ -175,7 +154,7 @@ setInterval(() => {
   pinPops.push(pins);
 }, 2000);
 
-// lives
+// ---------- lives ----------
 let lives = ["X", "X", "X"];
 function displayLives() {
   let i = 0;
@@ -183,6 +162,7 @@ function displayLives() {
     i += 40;
     ctx.fillText(life, canvas.width - 175 + i, canvas.height - 25);
   }
+
   if (lives.length == 0) {
     cancelAnimationFrame(animateId);
     console.log("game over");
@@ -190,20 +170,18 @@ function displayLives() {
   }
 }
 
-function gameover() {
-  let gameoverId = document.querySelector("#gameover");
-  gameoverId.style.display = "block";
 
-  ctx.fillText(gameoverId, canvas.width / 2, canvas.height / 2);
-}
+// -----------------------
+//       animate it!
+// -----------------------
 
-// animate it!
 let animateId = null;
 
 let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
 let audioLoveBubbs = new Audio(
   "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
 );
+
 function pop(bubble) {
   for (var a = 0; a < bubble.lines.length; a++) {
     popDistance = bubble.radius * 0.5;
@@ -212,7 +190,13 @@ function pop(bubble) {
   }
 }
 
+// -----------------------
+//       animate it!
+// -----------------------
+
+
 function animate() {
+
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -225,8 +209,6 @@ function animate() {
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
-  for (let dead of lives) {
-  }
 
   // detect collision horizontal pins
   for (let pins of pinPops) {
@@ -324,8 +306,11 @@ function animate() {
           bubb.r
         )
       ) {
-        bubb.r += 0.02;
-        score += 1;
+        
+        if(!bubb.gameover){
+          score += 1;
+          bubb.r += 0.01;
+        }
         pop(bubble);
       }
     }
@@ -347,16 +332,29 @@ function animate() {
     }
   }
 
-  if (lives.length === 0) {
-    let gameover = ctx.fillText(
-      "GAME OVER",
-      canvas.width / 2 - 200,
-      canvas.height / 2 - 50
-    );
-    gameover.font = "300px Teko, sans-serif";
+  if(lives.length === 0) {
+    bubb.gameover = true
+    ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300)
+    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 100, canvas.height/2)
+    ctx.font = "28px Teko, san-serif";
+
+    ctx.fillText("Press the SPACEBAR to start a new game", canvas.width/2 - 210, canvas.height/2 + 50)
+    ctx.font = "48px Teko, san-serif";
+
+
+
   }
+
 }
+
+
+
 
 ctx.font = "48px Teko, san-serif";
 
 animate();
+window.onkeypress = function(e){
+  if(e.key === " " && bubb.gameover){
+    window.location.reload()
+  }
+}
