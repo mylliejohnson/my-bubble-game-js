@@ -25,4 +25,4 @@ let verticalBubbs = [];
 setInterval(() => {
   let bubbsDown = new Lovebubb(Math.max(Math.random() * 700), 0, 50, 50);
   verticalBubbs.push(bubbsDown);
-}, 3000);
+}, 7000);
