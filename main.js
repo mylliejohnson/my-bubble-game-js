@@ -1,16 +1,18 @@
-// canvas setup
-// const canvas = document.querySelector("canvas");
-// const ctx = canvas.getContext("2d");
-
-//declaring background music to play and pause
-//let introMusic = new Audio("./audio/Adventure-320bit.mp3");
+/* --- GAME SETUP ----- */
 let bgMusic = document.getElementById("bgmusic");
 let icon = document.getElementById("icon");
-//setting background music volume to 0.7 so we can hear pop sound loud and clear
 document.getElementById("bgmusic").volume = 0.7;
-
+let dart = new Image();
+dart.src = "./images/dart1.png";
+let dartDown = new Image();
+dartDown.src = "./images/dartdown.png";
+let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
+let audioLoveBubbs = new Audio(
+  "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
+);
+ 
+// audio
 icon.onclick = function () {
-  // bgMusic.play();
   if (bgMusic.paused) {
     bgMusic.play();
     icon.src = "./images/pause.png";
@@ -20,7 +22,10 @@ icon.onclick = function () {
   }
 };
 
-// create bubble
+/* ---------------------- 
+       Classes     
+ ---------------------- */
+
 class Bubble {
   constructor(x, y, r, sAngle, eAngle) {
     this.x = x;
@@ -41,48 +46,6 @@ class Bubble {
   };
 }
 
-// the bubble
-let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 30, 0, 1 * Math.PI);
-
-// key functions - move and grow bubble // track score
-window.onkeydown = function (e) {
-   
-  if (e.key === "ArrowRight") {
-    bubb.x += 19; // increase speed bubble moves across bored
-    if (bubb.x > canvas.width) {
-      bubb.x = canvas.width - bubb.r;
-      console.log("Out of bounds");
-    }
-  }
-  if (e.key === "ArrowLeft") {
-    bubb.x -= 19; // increase speed bubble moves across bored
-    if (bubb.x + bubb.r < 0) {
-      bubb.x = -bubb.x + bubb.r;
-      console.log("Out of bounds");
-    }
-  }
-  if (e.key === "ArrowUp") {
-    bubb.y -= 19; // increase speed bubble moves across bored
-    if (bubb.y + bubb.r < 0) {
-      bubb.y = -bubb.y + bubb.r;
-      console.log("Out of bounds");
-    }
-  }
-  if (e.key === "ArrowDown") {
-    bubb.y += 19; // increase speed bubble moves across bored
-    if (bubb.y > canvas.height) {
-      bubb.y = +bubb.y - bubb.r;
-      console.log("Out of bounds");
-    }
-  }
-};
-
-let score = 0; 
-
-let dart = new Image();
-dart.src = "./images/dart1.png";
-
-// create pins
 class Pin {
   constructor(x, y, w, h) {
     this.x = x;
@@ -96,7 +59,7 @@ class Pin {
   };
 
   move = () => {
-    this.x -= 6; // slow pins down, maybe increase as level gets harder?
+    this.x -= 6; 
     this.draw();
   };
 
@@ -105,9 +68,6 @@ class Pin {
     console.log("clear across");
   };
 }
-
-let dartDown = new Image();
-dartDown.src = "./images/dartdown.png";
 
 class downPin {
   constructor(x, y, w, h) {
@@ -122,7 +82,7 @@ class downPin {
   };
 
   move = () => {
-    this.y += 6; // slow pins down, maybe increase as level gets harder?
+    this.y += 6;
     this.draw();
   };
 
@@ -132,16 +92,16 @@ class downPin {
   };
 }
 
-// interval for pins
-
+/* -----------------------------
+  CREATE PINS AND SET INTERVALS
+-------------------------------*/ 
+let pinPops = [];
 let verticalPins = [];
 
 setInterval(() => {
   let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50);
   verticalPins.push(pinsDown);
 }, 2000);
-
-let pinPops = [];
 
 setInterval(() => {
   let pins = new Pin(
@@ -154,7 +114,9 @@ setInterval(() => {
   pinPops.push(pins);
 }, 2000);
 
-// ---------- lives ----------
+/* ------------ 
+      LIVES
+--------------- */
 let lives = ["X", "X", "X"];
 function displayLives() {
   let i = 0;
@@ -166,21 +128,49 @@ function displayLives() {
   if (lives.length == 0) {
     cancelAnimationFrame(animateId);
     console.log("game over");
-    bgMusic.pause(); //background music stops when all lives are finished
+    bgMusic.pause(); 
   }
 }
 
+/* ----------------------
+    KEY FUNCTIONS 
+------------------------- */
+window.onkeydown = function (e) {
+  if (e.key === "ArrowRight") {
+    bubb.x += 19; 
+    if (bubb.x > canvas.width) {
+      bubb.x = canvas.width - bubb.r;
+      console.log("Out of bounds");
+    }
+  }
+  if (e.key === "ArrowLeft") {
+    bubb.x -= 19; 
+    if (bubb.x + bubb.r < 0) {
+      bubb.x = -bubb.x + bubb.r;
+      console.log("Out of bounds");
+    }
+  }
+  if (e.key === "ArrowUp") {
+    bubb.y -= 19; 
+    if (bubb.y + bubb.r < 0) {
+      bubb.y = -bubb.y + bubb.r;
+      console.log("Out of bounds");
+    }
+  }
+  if (e.key === "ArrowDown") {
+    bubb.y += 19; 
+    if (bubb.y > canvas.height) {
+      bubb.y = +bubb.y - bubb.r;
+      console.log("Out of bounds");
+    }
+  }
+};
 
-// -----------------------
-//       animate it!
-// -----------------------
-
-let animateId = null;
-
-let audioPopSound = new Audio("./audio/Bubble, pop sound effect.mp3");
-let audioLoveBubbs = new Audio(
-  "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
-);
+/* --------------------
+        BUBBLES
+----------------------- */ 
+let score = 0; 
+let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 30, 0, 1 * Math.PI);
 
 function pop(bubble) {
   for (var a = 0; a < bubble.lines.length; a++) {
@@ -190,45 +180,41 @@ function pop(bubble) {
   }
 }
 
-// -----------------------
-//       animate it!
-// -----------------------
+/* -----------------------
+       ANIMATE !!!
+ ----------------------- */
 
+let animateId = null;
 
 function animate() {
 
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // ----- DRAW & DISPLAY ----- //
   drawBubbles();
   bubb.draw();
 
-  bubb.r = Math.max(10, bubb.r - 0.02);
-
- if(!bubb.gameover){
-  ctx.fillText(score, 20, 50);
- }
-
-  // when collision is detected, pop a life off of the array
   displayLives(lives);
 
-  // detect collision horizontal pins
+  if(!bubb.gameover){
+    ctx.fillText(score, 20, 50);
+  }
+
+  bubb.r = Math.max(10, bubb.r - 0.02);
+
+  // ---- COLLISIONS ----- //
   for (let pins of pinPops) {
     pins.move();
-
     if (circleRect(bubb.x, bubb.y, bubb.r, pins.x, pins.y, pins.w, pins.h)) {
       console.log("collision");
-      // cancelAnimationFrame(animateId);
-      // bgMusic.pause();
       audioPopSound.play();
-      // pins.clear();
       pinPops = [];
       verticalPins = [];
       bubb.r = 10;
       lives.pop();
     }
 
-    //Bubble pins
     for (let bubble of bubbles) {
       if (
         circleRect(
@@ -258,10 +244,8 @@ function animate() {
     }
   }
 
-  // detect collision vertical pins
   for (let pinsDown of verticalPins) {
     pinsDown.move();
-
     if (
       circleRect(
         bubb.x,
@@ -274,8 +258,6 @@ function animate() {
       )
     ) {
       console.log("collision down");
-      // cancelAnimationFrame(animateId);
-      // bgMusic.pause();
       audioPopSound.play();
       pinPops = [];
       verticalPins = [];
@@ -283,7 +265,6 @@ function animate() {
       lives.pop();
     }
 
-    //Bubble pins
     for (let bubble of bubbles) {
       if (
         circleRect(
@@ -318,7 +299,7 @@ function animate() {
     }
   }
 
-  //Bonus love bubbles
+  // -------- EXTRA LIVES -------- //
   if (lives.length <= 1 || lives.length === 2) {
     for (let chats of verticalBubbs) {
       chats.move();
@@ -329,13 +310,14 @@ function animate() {
         audioLoveBubbs.play();
         verticalBubbs = [];
         lives.push("X");
-        // pinsDown.clear();
       }
     }
   }
 
+  // ------ GAMEOVER ----- //
   if(lives.length == 0 ){
     bubb.gameover = true
+
     ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300)
     let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 100, canvas.height/2)
     ctx.font = "28px Teko, san-serif";
@@ -343,14 +325,16 @@ function animate() {
     ctx.fillText("Press the SPACEBAR to start a new game", canvas.width/2 - 210, canvas.height/2 + 50)
     ctx.font = "48px Teko, san-serif";
   }
-
-}
+} //end of animate function
 
 ctx.font = "48px Teko, san-serif";
 
 animate();
+
+// --- GAME RESET --- //
 window.onkeypress = function(e){
   if(e.key === " " && bubb.gameover){
     window.location.reload()
   }
 }
+

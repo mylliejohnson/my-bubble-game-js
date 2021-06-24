@@ -3,8 +3,6 @@
 // ---------
 
 var canvas = document.querySelector("canvas");
-//       canvas.width = document.body.clientWidth;
-//       canvas.height = document.body.clientHeight;
 var ctx = canvas.getContext("2d");
 var count = canvas.height;
 var bubbles = [];
@@ -17,37 +15,17 @@ var mouseOffset = {
   y: 0,
 };
 
-// let audio = new Audio("./audio/Bubble, pop sound effect.mp3");
-
 // --------------
 // Animation Loop
 // --------------
 
-//   function animate2() {
-
-//     // ------------
-//     // Clear Canvas
-//     // ------------
-//     drawBubbles()
-
-//     window.requestAnimationFrame(animate2);
-//   }
-
-//   window.requestAnimationFrame(animate2);
-
 function drawBubbles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  console.log("animate?");
 
-  // ------------
   // Draw Bubbles
-  // ------------
 
   ctx.beginPath();
   for (var i = 0; i < bubbles.length; i++) {
-    // first num = distance between waves
-    // second num = wave height
-    // third num = move the center of the wave away from the edge
     bubbles[i].position.x =
       Math.sin(bubbles[i].count / bubbles[i].distanceBetweenWaves) * 50 +
       bubbles[i].xOff;
@@ -82,9 +60,7 @@ function drawBubbles() {
       }
     }
   }
-  // audio.play();
 }
-//animate()
 
 // ------------------
 // Bubble Constructor
@@ -269,7 +245,3 @@ window.addEventListener("resize", function () {
   canvas.width = document.body.clientWidth;
   canvas.height = document.body.clientHeight;
 });
-
-// ---------------
-// Event Listeners
-// ---------------
