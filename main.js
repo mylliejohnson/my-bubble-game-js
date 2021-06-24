@@ -28,15 +28,15 @@ class Bubble {
     this.r = r;
     this.sAngle = sAngle;
     this.eAngle = eAngle;
-    this.gameover = false
+    this.gameover = false;
   }
 
   draw = () => {
-    if(!this.gameover){
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-    ctx.fillStyle = "#A9D0F5";
-    ctx.fill();
+    if (!this.gameover) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+      ctx.fillStyle = "#A9D0F5";
+      ctx.fill();
     }
   };
 }
@@ -46,7 +46,6 @@ let bubb = new Bubble(canvas.width / 2, canvas.height / 2, 30, 0, 1 * Math.PI);
 
 // key functions - move and grow bubble // track score
 window.onkeydown = function (e) {
-   
   if (e.key === "ArrowRight") {
     bubb.x += 19; // increase speed bubble moves across bored
     if (bubb.x > canvas.width) {
@@ -77,7 +76,7 @@ window.onkeydown = function (e) {
   }
 };
 
-let score = 0; 
+let score = 0;
 
 let dart = new Image();
 dart.src = "./images/dart1.png";
@@ -144,13 +143,7 @@ setInterval(() => {
 let pinPops = [];
 
 setInterval(() => {
-  let pins = new Pin(
-    canvas.width,
-    40 + (Math.random() * 360),
-    10,
-    10,
-    25
-  );
+  let pins = new Pin(canvas.width, 40 + Math.random() * 360, 10, 10, 25);
   pinPops.push(pins);
 }, 2000);
 
@@ -169,7 +162,6 @@ function displayLives() {
     bgMusic.pause(); //background music stops when all lives are finished
   }
 }
-
 
 // -----------------------
 //       animate it!
@@ -194,9 +186,7 @@ function pop(bubble) {
 //       animate it!
 // -----------------------
 
-
 function animate() {
-
   animateId = requestAnimationFrame(animate);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -205,9 +195,9 @@ function animate() {
 
   bubb.r = Math.max(10, bubb.r - 0.02);
 
- if(!bubb.gameover){
-  ctx.fillText(score, 20, 50);
- }
+  if (!bubb.gameover) {
+    ctx.fillText(score, 20, 50);
+  }
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
@@ -308,8 +298,7 @@ function animate() {
           bubb.r
         )
       ) {
-        
-        if(!bubb.gameover){
+        if (!bubb.gameover) {
           score += 1;
           bubb.r += 0.01;
         }
@@ -334,23 +323,30 @@ function animate() {
     }
   }
 
-  if(lives.length == 0 ){
-    bubb.gameover = true
-    ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300)
-    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 100, canvas.height/2)
+  if (lives.length == 0) {
+    bubb.gameover = true;
+    ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300);
+    let gameover = ctx.fillText(
+      "GAME OVER",
+      canvas.width / 2 - 100,
+      canvas.height / 2
+    );
     ctx.font = "28px Teko, san-serif";
 
-    ctx.fillText("Press the SPACEBAR to start a new game", canvas.width/2 - 210, canvas.height/2 + 50)
+    ctx.fillText(
+      "Press the SPACEBAR to start a new game",
+      canvas.width / 2 - 210,
+      canvas.height / 2 + 50
+    );
     ctx.font = "48px Teko, san-serif";
   }
-
 }
 
 ctx.font = "48px Teko, san-serif";
 
 animate();
-window.onkeypress = function(e){
-  if(e.key === " " && bubb.gameover){
-    window.location.reload()
+window.onkeypress = function (e) {
+  if (e.key === " " && bubb.gameover) {
+    window.location.reload();
   }
-}
+};
