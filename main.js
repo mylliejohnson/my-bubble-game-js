@@ -255,7 +255,7 @@ function animate() {
           bubb.r
         )
       ) {
-        bubb.r += 0.01;
+        bubb.r += 0.04;
       }
     }
   }
@@ -311,7 +311,7 @@ function animate() {
           bubb.r
         )
       ) {
-        bubb.r += 0.01;
+        bubb.r += 0.04;
         score += 1;
         pop(bubble);
       }
