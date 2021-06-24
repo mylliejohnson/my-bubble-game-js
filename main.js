@@ -314,21 +314,12 @@ function animate() {
           pop(bubble);
         }
       }
-      if (
-        collisionCircle(
-          bubble.position.x,
-          bubble.position.y,
-          bubble.radius,
-          bubb.x,
-          bubb.y,
-          bubb.r
-        )
-      ) {
+       {
         bubb.r += 0.02;
-        score += 1;
-        pop(bubble);
+        // score += 1;
       }
     }
+
 
     //Bonus love bubbles
     for (let chats of verticalBubbs) {
@@ -358,17 +349,11 @@ function animate() {
       //   pop(chats);
       // }
     }
-  }
-<<<<<<< HEAD
-=======
-
   if(lives.length === 0) {
     let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
     gameover.font = "300px Teko, sans-serif"
-  }
-  
 }
->>>>>>> 35072059259badd0c810b15c34250e3e4fc3cd97
+}
 
 
 ctx.font = "48px Teko, san-serif";
