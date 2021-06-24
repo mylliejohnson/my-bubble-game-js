@@ -330,6 +330,8 @@ function animate() {
       ) {
         console.log("bonus score");
         audioLoveBubbs.play();
+        verticalPins = [];
+        lives.push();
         // pinsDown.clear();
       }
       //score 100 points if bubble touches the love bubbles
