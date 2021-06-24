@@ -160,7 +160,7 @@ window.onkeydown = function (e) {
   if (e.key === "ArrowDown") {
     bubb.y += 19; 
     if (bubb.y > canvas.height) {
-      bubb.y = +bubb.y - bubb.r;
+      bubb.y = canvas.height - bubb.r;
       console.log("Out of bounds");
     }
   }
@@ -336,5 +336,4 @@ window.onkeypress = function(e){
   if(e.key === " " && bubb.gameover){
     window.location.reload()
   }
-}
-
+} 
