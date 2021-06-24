@@ -190,6 +190,13 @@ function displayLives() {
   }
 }
 
+function gameover(){
+ let gameoverId = document.querySelector('#gameover')
+ gameoverId.style.display = 'block'
+ 
+ ctx.fillText(gameoverId, canvas.width/2, canvas.height/2)
+}
+
 // animate it!
 let animateId = null;
 
@@ -218,6 +225,9 @@ function animate() {
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
+  for(let dead of lives){
+    
+  }
 
   // detect collision horizontal pins
   for (let pins of pinPops) {
