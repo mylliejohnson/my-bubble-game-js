@@ -320,8 +320,6 @@ function animate() {
   }
 } //end of animate function
 
-ctx.font = "48px Teko, san-serif";
-
 animate();
 
 // --- GAME RESET --- //
