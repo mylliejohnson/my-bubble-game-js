@@ -332,7 +332,7 @@ function animate() {
   }
 
   //Bonus love bubbles
-  if (lives.length <= 1) {
+  if (lives.length <= 1 || lives.length === 2) {
     for (let chats of verticalBubbs) {
       chats.move();
       if (
