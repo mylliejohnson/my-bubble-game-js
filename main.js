@@ -359,12 +359,14 @@ function animate() {
       // }
     }
   }
+
+  if(lives.length === 0) {
+    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+    gameover.font = "300px Teko, sans-serif"
+  }
+  
 }
 
-// if(lives.length == 3) {
-//   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-//   ctx.font = "100px Teko, sans-serif"
-// }
 
 ctx.font = "48px Teko, san-serif";
 
