@@ -190,6 +190,13 @@ function displayLives() {
   }
 }
 
+function gameover(){
+ let gameoverId = document.querySelector('#gameover')
+ gameoverId.style.display = 'block'
+ 
+ ctx.fillText(gameoverId, canvas.width/2, canvas.height/2)
+}
+
 // animate it!
 let animateId = null;
 
@@ -218,6 +225,9 @@ function animate() {
 
   // when collision is detected, pop a life off of the array
   displayLives(lives);
+  for(let dead of lives){
+    
+  }
 
   // detect collision horizontal pins
   for (let pins of pinPops) {
@@ -330,6 +340,8 @@ function animate() {
       ) {
         console.log("bonus score");
         audioLoveBubbs.play();
+        verticalPins = [];
+        lives.push();
         // pinsDown.clear();
       }
       //score 100 points if bubble touches the love bubbles
@@ -349,12 +361,14 @@ function animate() {
       // }
     }
   }
+
+  if(lives.length === 0) {
+    let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
+    gameover.font = "300px Teko, sans-serif"
+  }
+  
 }
 
-// if(lives.length == 3) {
-//   let gameover = ctx.fillText("GAME OVER", canvas.width/2 - 200, canvas.height/2 -50)
-//   ctx.font = "100px Teko, sans-serif"
-// }
 
 ctx.font = "48px Teko, san-serif";
 
