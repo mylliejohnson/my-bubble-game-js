@@ -120,11 +120,6 @@ class Pin {
     this.x -= 6; // slow pins down, maybe increase as level gets harder?
     this.draw();
   };
-
-  clear = () => {
-    ctx.clearRect(this.x, this.y, 50, 25);
-    console.log("clear across");
-  };
 }
 
 let dartDown = new Image();
@@ -145,11 +140,6 @@ class downPin {
   move = () => {
     this.y += 6; // slow pins down, maybe increase as level gets harder?
     this.draw();
-  };
-
-  clear = () => {
-    ctx.clearRect(this.x, this.y, 25, 50);
-    console.log("clear down");
   };
 }
 
