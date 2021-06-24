@@ -326,6 +326,8 @@ function animate() {
 
 animate();
 
+ctx.font = "48px Teko, san-serif";
+
 // --- GAME RESET --- //
 window.onkeypress = function (e) {
   if (e.key === " " && bubb.gameover) {
