@@ -115,7 +115,7 @@ let int2 = null;
 
 setInterval(() => {
   let newSpeed = speed - 500;
-  speed = Math.max(200, newSpeed);
+  speed = Math.max(1000, newSpeed);
   console.log(speed);
   clearInterval(int1);
   clearInterval(int2);
