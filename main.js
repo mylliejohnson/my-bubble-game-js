@@ -11,9 +11,27 @@ let audioLoveBubbs = new Audio(
   "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
 );
 
-canvas.width = 800
-canvas.height = 500
+//Review Animation
+// anime
+//   .timeline({ loop: true })
+//   .add({
+//     targets: ".ml15 .word",
+//     scale: [14, 1],
+//     opacity: [0, 1],
+//     easing: "easeOutCirc",
+//     duration: 800,
+//     delay: (el, i) => 800 * i,
+//   })
+//   .add({
+//     targets: ".ml15",
+//     opacity: 0,
+//     duration: 1000,
+//     easing: "easeOutExpo",
+//     delay: 1000,
+//   });
 
+canvas.width = 800;
+canvas.height = 500;
 
 // audio
 icon.onclick = function () {
@@ -25,7 +43,6 @@ icon.onclick = function () {
     icon.src = "./images/play.png";
   }
 };
-
 
 /* ---------------------- 
        Classes     
@@ -85,7 +102,6 @@ class downPin {
     this.y += 6;
     this.draw();
   };
-
 }
 
 /* -----------------------------
@@ -93,32 +109,32 @@ class downPin {
 -------------------------------*/
 let pinPops = [];
 let verticalPins = [];
-let speed = 2000
+let speed = 2000;
 let int1 = null;
-let int2 = null
+let int2 = null;
 
 setInterval(() => {
-  let newSpeed = speed - 500
-  speed = Math.max(200, newSpeed)
-  console.log(speed)
-  clearInterval(int1)
-  clearInterval(int2)
-  setTime()
-}, 10000)
+  let newSpeed = speed - 500;
+  speed = Math.max(200, newSpeed);
+  console.log(speed);
+  clearInterval(int1);
+  clearInterval(int2);
+  setTime();
+}, 10000);
 
-function setTime(){
-  console.log(speed)
+function setTime() {
+  console.log(speed);
   int1 = setInterval(() => {
     let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50);
     verticalPins.push(pinsDown);
   }, speed);
-  
+
   int2 = setInterval(() => {
     let pins = new Pin(canvas.width, Math.random() * 360, 10, 10, 25);
     pinPops.push(pins);
   }, speed);
 }
-setTime()
+setTime();
 
 /* ------------ 
       LIVES
@@ -327,11 +343,11 @@ function animate() {
     bubb.gameover = true;
     ctx.textAlign = "center";
     ctx.fillText(score, canvas.width - 400, canvas.height - 300);
-    ctx.fillText("GAME OVER", canvas.width / 2 , canvas.height / 2);
+    ctx.fillText("GAME OVER", canvas.width / 2, canvas.height / 2);
     //document.getElementById("input-form").value;
-   
+
     ctx.font = "28px Teko, san-serif";
-    
+
     ctx.fillText(
       "Press the SPACEBAR to start a new game",
       canvas.width / 2,
@@ -358,21 +374,19 @@ function animate() {
     //   easing: "easeOutExpo",
     //   delay: 1000,
     // });
-
   }
 
   // --- SCORE KEEPING --- //
   finalScore = score;
 
   if (bubb.gameover && !scoreSave) {
-    highscore({finalScore})
-    scoreSave = true
+    highscore({ finalScore });
+    scoreSave = true;
   }
-
 } //end of animate function
 
-let finalScore = null
-let scoreSave= false
+let finalScore = null;
+let scoreSave = false;
 
 // --- GAME RESET --- //
 window.onkeypress = function (e) {
@@ -384,8 +398,6 @@ ctx.font = "48px Teko, san-serif";
 
 animate();
 
-
-function review(){
-  document.querySelector('.ml15').style.display = "block"
-   
+function review() {
+  document.querySelector(".ml15").style.display = "block";
 }
