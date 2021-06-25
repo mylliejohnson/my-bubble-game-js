@@ -11,6 +11,10 @@ let audioLoveBubbs = new Audio(
   "./audio/mixkit-extra-bonus-in-a-video-game-2045.wav"
 );
 
+canvas.width = 800
+canvas.height = 500
+
+
 // audio
 icon.onclick = function () {
   if (bgMusic.paused) {
@@ -121,7 +125,6 @@ function displayLives() {
   }
 
   if (lives.length == 0) {
-    cancelAnimationFrame(animateId);
     console.log("game over");
     bgMusic.pause();
   }
@@ -315,19 +318,22 @@ function animate() {
   // ------ GAMEOVER ----- //
   if (lives.length == 0) {
     bubb.gameover = true;
+
     ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300);
     ctx.fillText("GAME OVER", canvas.width / 2 - 100, canvas.height / 2);
     //document.getElementById("input-form").value;
+   
     ctx.font = "28px Teko, san-serif";
+    
     ctx.fillText(
       "Press the SPACEBAR to start a new game",
       canvas.width / 2 - 210,
       canvas.height / 2 + 50
     );
+
     ctx.font = "48px Teko, san-serif";
      
     //Review Animation
-    document.querySelector('.ml15').style.display = "block"
     anime
     .timeline({ loop: true })
     .add({
@@ -345,6 +351,7 @@ function animate() {
       easing: "easeOutExpo",
       delay: 1000,
     });
+
   }
 
   // --- SCORE KEEPING --- //
@@ -366,3 +373,9 @@ window.onkeypress = function (e) {
 ctx.font = "48px Teko, san-serif";
 
 animate();
+
+
+function review(){
+  document.querySelector('.ml15').style.display = "block"
+   
+}
