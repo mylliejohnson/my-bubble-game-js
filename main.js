@@ -63,11 +63,6 @@ class Pin {
     this.x -= 6;
     this.draw();
   };
-
-  clear = () => {
-    ctx.clearRect(this.x, this.y, 50, 25);
-    console.log("clear across");
-  };
 }
 
 class downPin {
@@ -87,10 +82,6 @@ class downPin {
     this.draw();
   };
 
-  clear = () => {
-    ctx.clearRect(this.x, this.y, 25, 50);
-    console.log("clear down");
-  };
 }
 
 /* -----------------------------
@@ -326,6 +317,7 @@ function animate() {
       canvas.height / 2 + 50
     );
     ctx.font = "48px Teko, san-serif";
+
     //Review Animation
     document.querySelector('.ml15').style.display = "block"
     anime
