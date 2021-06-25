@@ -10,14 +10,35 @@
 <body value="PLAY" onclick="play()">
     <h1 data-text="bubble pop">DON'T POP MY BUBBLE🥺</h1>
 
+
+
+    <div class="highscores">
+
+        <div id="input-form">
+            <input type="text" name="username" placeholder="Enter name here" />
+            <button id="send-btn" class="btn"><a href="./intro.html">Play</a></button>
+        </div>
+
+        <h2>High Scores:</h2>
+        <ul class="top5">
+            <li class="hs1">1. </li>
+            <li class="hs2">2. </li>
+            <li class="hs3">3. </li>
+            <li class="hs4">4. </li>
+            <li class="hs5">5. </li>
+        </ul>
+
+
+    </div>
+
     <div class="container">
         <h2 class="neon">How to Play🎮</h2>
         <div class="controls">
           <img src="./images/arrows.png" alt="keys" width="200" height="100">
         </div>
-        <button class="btn">
+        <!-- <button class="btn">
             <a href="./intro.html">PLAY</a>
-        </button>
+        </button> -->
     </div>
     <!-- <img src="./images/backgroundbubb.jpg" value="PLAY" onclick="play()"> -->
     <audio src="./audio/Adventure-320bit.mp3" type="audio/mp3" id="my_audio" loop="loop"></audio>

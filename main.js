@@ -104,7 +104,7 @@ setInterval(() => {
 }, 2000);
 
 setInterval(() => {
-  let pins = new Pin(canvas.width, 40 + Math.random() * 360, 10, 10, 25);
+  let pins = new Pin(canvas.width, Math.random() * 360, 10, 10, 25);
   pinPops.push(pins);
 }, 2000);
 
@@ -297,6 +297,7 @@ function animate() {
 
   // -------- EXTRA LIVES -------- //
 
+  verticalBubbs = [];
   for (let chats of verticalBubbs) {
     chats.move();
     if (
@@ -325,8 +326,15 @@ function animate() {
     );
     ctx.font = "48px Teko, san-serif";
   }
-}
-//end of animate function
+
+  // --- SCORE KEEPING --- //
+  let finalScore = score;
+  let obj = [];
+  if (bubb.gameover) {
+    obj.push(finalScore);
+    console.log(obj);
+  }
+} //end of animate function
 
 // --- GAME RESET --- //
 window.onkeypress = function (e) {
@@ -334,7 +342,6 @@ window.onkeypress = function (e) {
     window.location.reload();
   }
 };
-
 ctx.font = "48px Teko, san-serif";
 
 animate();
