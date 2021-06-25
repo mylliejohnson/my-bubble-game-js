@@ -67,11 +67,6 @@ class Pin {
     this.x -= 6;
     this.draw();
   };
-
-  clear = () => {
-    ctx.clearRect(this.x, this.y, 50, 25);
-    console.log("clear across");
-  };
 }
 
 class downPin {
@@ -91,10 +86,6 @@ class downPin {
     this.draw();
   };
 
-  clear = () => {
-    ctx.clearRect(this.x, this.y, 25, 50);
-    console.log("clear down");
-  };
 }
 
 /* -----------------------------
@@ -318,21 +309,21 @@ function animate() {
   // ------ GAMEOVER ----- //
   if (lives.length == 0) {
     bubb.gameover = true;
-
-    ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300);
-    ctx.fillText("GAME OVER", canvas.width / 2 - 100, canvas.height / 2);
+    ctx.textAlign = "center";
+    ctx.fillText(score, canvas.width - 400, canvas.height - 300);
+    ctx.fillText("GAME OVER", canvas.width / 2 , canvas.height / 2);
     //document.getElementById("input-form").value;
    
     ctx.font = "28px Teko, san-serif";
     
     ctx.fillText(
       "Press the SPACEBAR to start a new game",
-      canvas.width / 2 - 210,
+      canvas.width / 2,
       canvas.height / 2 + 50
     );
 
     ctx.font = "48px Teko, san-serif";
-     
+
     //Review Animation
     anime
     .timeline({ loop: true })
@@ -355,7 +346,7 @@ function animate() {
   }
 
   // --- SCORE KEEPING --- //
-  let finalScore = score;
+  finalScore = score;
   let obj = [];
   if (bubb.gameover) {
     obj.push(finalScore);
@@ -363,6 +354,9 @@ function animate() {
   }
 
 } //end of animate function
+
+let finalScore = null
+
 
 // --- GAME RESET --- //
 window.onkeypress = function (e) {
