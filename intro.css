@@ -182,15 +182,22 @@ a {
 
 /* HIGH SCORES */
 .highscores {
+  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   margin: auto;
   align-items: center;
-  color: lightgreen;
+  color: black;
   font-size: 26px;
   margin: 0;
   padding: 0;
   font-family: "Teko", san-serif;
+}
+
+.highscores h2 {
+  color: lightgreen;
+  padding: 10px 10px 0 15px;
+  margin-bottom: 0;
 }
 
 .top5 {
@@ -200,7 +207,9 @@ a {
   color: lightgreen;
   font-size: 26px;
   margin: 0;
-  padding: 0;
+  background: #828b94;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .top5 li {
@@ -214,4 +223,16 @@ h3 {
   margin: 0.4em 0;
   color: azure;
   text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.ml15 {
+  font-weight: 800;
+  font-size: 3.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+
+.ml15 .word {
+  display: inline-block;
+  line-height: 1em;
 }
