@@ -191,10 +191,7 @@ function animate() {
     startDropBubbs();
     bubbsdropping = true;
   }
-  // } else if (lives.length === 3 && !bubbsdropping) {
-  //   // startDropBubbs();
-  //   bubbsdropping = false;
-  // }
+
   displayLives(lives);
 
   if (!bubb.gameover) {
@@ -308,7 +305,9 @@ function animate() {
       console.log("bonus score");
       audioLoveBubbs.play();
       verticalBubbs = [];
-      lives.push("X");
+      if (lives.length <= 2) {
+        lives.push("X");
+      }
     }
   }
 
