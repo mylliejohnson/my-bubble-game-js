@@ -93,16 +93,32 @@ class downPin {
 -------------------------------*/
 let pinPops = [];
 let verticalPins = [];
+let speed = 2000
+let int1 = null;
+let int2 = null
 
 setInterval(() => {
-  let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50);
-  verticalPins.push(pinsDown);
-}, 2000);
+  let newSpeed = speed - 500
+  speed = Math.max(200, newSpeed)
+  console.log(speed)
+  clearInterval(int1)
+  clearInterval(int2)
+  setTime()
+}, 10000)
 
-setInterval(() => {
-  let pins = new Pin(canvas.width, Math.random() * 360, 10, 10, 25);
-  pinPops.push(pins);
-}, 2000);
+function setTime(){
+  console.log(speed)
+  int1 = setInterval(() => {
+    let pinsDown = new downPin(Math.max(Math.random() * 800), 0, 25, 50);
+    verticalPins.push(pinsDown);
+  }, speed);
+  
+  int2 = setInterval(() => {
+    let pins = new Pin(canvas.width, Math.random() * 360, 10, 10, 25);
+    pinPops.push(pins);
+  }, speed);
+}
+setTime()
 
 /* ------------ 
       LIVES
@@ -325,38 +341,38 @@ function animate() {
     ctx.font = "48px Teko, san-serif";
 
     //Review Animation
-    anime
-    .timeline({ loop: true })
-    .add({
-      targets: ".ml15 .word",
-      scale: [14, 1],
-      opacity: [0, 1],
-      easing: "easeOutCirc",
-      duration: 800,
-      delay: (el, i) => 800 * i,
-    })
-    .add({
-      targets: ".ml15",
-      opacity: 0,
-      duration: 1000,
-      easing: "easeOutExpo",
-      delay: 1000,
-    });
+    // anime
+    // .timeline({ loop: true })
+    // .add({
+    //   targets: ".ml15 .word",
+    //   scale: [14, 1],
+    //   opacity: [0, 1],
+    //   easing: "easeOutCirc",
+    //   duration: 800,
+    //   delay: (el, i) => 800 * i,
+    // })
+    // .add({
+    //   targets: ".ml15",
+    //   opacity: 0,
+    //   duration: 1000,
+    //   easing: "easeOutExpo",
+    //   delay: 1000,
+    // });
 
   }
 
   // --- SCORE KEEPING --- //
   finalScore = score;
-  let obj = [];
-  if (bubb.gameover) {
-    obj.push(finalScore);
-    console.log(obj);
+
+  if (bubb.gameover && !scoreSave) {
+    highscore({finalScore})
+    scoreSave = true
   }
 
 } //end of animate function
 
 let finalScore = null
-
+let scoreSave= false
 
 // --- GAME RESET --- //
 window.onkeypress = function (e) {
