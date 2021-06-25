@@ -298,7 +298,7 @@ function animate() {
 
   // -------- EXTRA LIVES -------- //
 
-  verticalBubbs = []
+
   for (let chats of verticalBubbs) {
     chats.move();
     if (
@@ -333,7 +333,6 @@ function animate() {
     obj.push(finalScore);
     console.log(obj)
   }
-
 
 } //end of animate function
 

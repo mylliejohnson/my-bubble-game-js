@@ -1,10 +1,11 @@
 console.log(axios)
 // preload: function () {
-//     this.load.html("form", "highscore.html");
+//     this.load.html("form", "index.html");
 // },
 
 // let obj = {
-//     name: this.user, score: this.score
+//     name: String,
+//     score: Number,
 //   }
 //  console.log(obj);
 
@@ -13,14 +14,20 @@ function highscore(obj){
 }
 
 function gethighscore(){
-    obj.sort((a, b) => a.score - b.score)
+    // obj.sort((a, b) => a.score - b.score)
     axios.get('https://ironrest.herokuapp.com/bubblegamehighscore').then(res => console.log(res.data))
-    document.querySelector('.hs1').innerText = score;
 }
 
-// highscore(obj);
-let highscore1 = document.querySelector('.hs1').innerText = 'Leanne';
-let highscore2 = document.querySelector('.hs2').innerText = 'Leanne';
-let highscore3 = document.querySelector('.hs3').innerText = 'Leanne';
-let highscore4 = document.querySelector('.hs4').innerText = 'Leanne';
-let highscore5 = document.querySelector('.hs5').innerText = 'Leanne';
+
+// player inputs name and store it in the obj
+let sendButton = document.getElementById('send-btn');
+sendButton.onclick = function() {
+    let player = document.getElementsByTagName('input')[0];
+    console.log(input.value);
+}
+
+$ ("button").click (function (event) {
+    // $(this) will have the value of the button ($("button")) object
+// because the button object invokes the click () method
+    console.log ($ (this).prop ("name"));
+    });
