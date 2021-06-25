@@ -104,7 +104,7 @@ setInterval(() => {
 }, 2000);
 
 setInterval(() => {
-  let pins = new Pin(canvas.width, 40 + Math.random() * 360, 10, 10, 25);
+  let pins = new Pin(canvas.width,Math.random() * 360, 10, 10, 25);
   pinPops.push(pins);
 }, 2000);
 
@@ -190,7 +190,8 @@ function animate() {
   if (lives.length <= 2 && !bubbsdropping) {
     startDropBubbs();
     bubbsdropping = true;
-  }
+  } 
+ 
   
   displayLives(lives);
 
@@ -297,6 +298,7 @@ function animate() {
 
   // -------- EXTRA LIVES -------- //
 
+  verticalBubbs = []
   for (let chats of verticalBubbs) {
     chats.move();
     if (
@@ -325,17 +327,15 @@ function animate() {
   }
 
   // --- SCORE KEEPING --- //
-  let finalScore = [];
-  if (bubb.gameover){
-    finalScore.push(score);
-    console.log(finalScore)
+  let finalScore = score;
+  let obj = [];
+  if (bubb.gameover) {
+    obj.push(finalScore);
+    console.log(obj)
   }
 
+
 } //end of animate function
-
-ctx.font = "48px Teko, san-serif";
-
-animate();
 
 // --- GAME RESET --- //
 window.onkeypress = function (e) {
@@ -343,3 +343,7 @@ window.onkeypress = function (e) {
     window.location.reload();
   }
 }
+ctx.font = "48px Teko, san-serif";
+
+animate();
+

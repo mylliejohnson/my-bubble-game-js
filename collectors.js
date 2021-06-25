@@ -27,5 +27,7 @@ function startDropBubbs() {
   setInterval(() => {
     let bubbsDown = new Lovebubb(Math.random(verticalBubbs) * 600, 0, 50, 50);
     verticalBubbs.push(bubbsDown);
-  }, 5000);
+  }, 5000); 
+  
 }
+
