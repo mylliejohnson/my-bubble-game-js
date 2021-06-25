@@ -81,6 +81,8 @@
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
+            
+            
         }
 
         #icon {
@@ -89,6 +91,21 @@
             cursor: pointer;
             padding-left: 5px;
         }
+        .ml15 {
+            font-weight: 800;
+            font-size: 1.2em;
+            text-transform: normal;
+            letter-spacing: 0.1em;
+            text-align: center;
+            
+          }
+          
+          .ml15 .word {
+            display: inline-block;
+            line-height: .1em;
+          }
+
+        
     </style>
 
 </head>
@@ -101,7 +118,7 @@
         <img src="./images/bubbles.svg">
         <div>
             <h1>DON'T POP MY BUBBLE</h1>
-            <h4>By Team Jupiter</h4>
+            <h4>By Team Jupiter 🪐</h4>
         </div>
         <img src="./images/bubbles.svg">
 
@@ -110,7 +127,7 @@
     <!-- music button -->
     <div>
         <div class="music">
-            <p>Click here to play the music</p>
+            <p>Click here to play/pause the music</p>
             <img src="./images/play.png" id="icon" alt="music logo">
         </div>
 
@@ -126,11 +143,24 @@
   <button type="reset" class="reset" style="display: none">Play Again!</button> -->
 
     <!-- instructions -->
-    <p><strong>INSTRUCTIONS</strong>: Use the arrow keys to move the bubble, & avoid the pins to
-        win! You get 3 lives. </p>
+    <p><strong>INSTRUCTIONS</strong>: Use the arrow keys to move the bubble💭, & avoid the pins📌 to
+        win! You get 3 lives💘</p>
 
     <canvas width="800" height="500"></canvas>
-
+    
+    <h2 class="ml15">
+        <span class="word">Thank</span>
+        <span class="word">you</span>
+        <span class="word">for</span>
+        <span class="word">playing 🙏</span><br>
+        <span class="word">Don't</span>
+        <span class="word">forget</span>
+        <span class="word">to</span>
+        <span class="word">review</span>
+        <span class="word">our</span>
+        <span class="word">project 🤝</span>
+      </h2>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 </body>
 
 <script src="background.js"></script>

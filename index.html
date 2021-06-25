@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./intro.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
     <title>🎈Bubble Poppers💉</title>
 </head>
 <body value="PLAY" onclick="play()">
@@ -19,7 +20,7 @@
             <button id="send-btn" class="btn"><a href="./intro.html">Play</a></button>
         </div>
 
-        <h2>High Scores:</h2>
+        <h2>High Scores👇</h2>
         <ul class="top5">
             <li class="hs1">1. </li>
             <li class="hs2">2. </li>
@@ -40,6 +41,18 @@
             <a href="./intro.html">PLAY</a>
         </button> -->
     </div>
+
+    <h3>Click the 🎮 to play music
+        <span
+           class="txt-rotate"
+           data-period="2000"
+           data-rotate='[ "Jose 😀", "Niko 😃", "Valerie 😐", "Blake 🥱", "Leanne 🤔", "Mahim 🤫", "Myllie 😌", "Mario 😬", "Voji 🤨", "Semra 🤓", "Amanda 🥺", "Brandon 😎"]'></span>
+      </h3>
+
+
+
+
+
     <!-- <img src="./images/backgroundbubb.jpg" value="PLAY" onclick="play()"> -->
     <audio src="./audio/Adventure-320bit.mp3" type="audio/mp3" id="my_audio" loop="loop"></audio>
     
@@ -67,6 +80,64 @@
         let audio = document.getElementById("my_audio");
         audio.play();
     }
+</script>
+<script>
+    var TxtRotate = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+      };
+      
+      TxtRotate.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+      
+        if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+      
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+      
+        var that = this;
+        var delta = 300 - Math.random() * 100;
+      
+        if (this.isDeleting) { delta /= 2; }
+      
+        if (!this.isDeleting && this.txt === fullTxt) {
+          delta = this.period;
+          this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+          this.isDeleting = false;
+          this.loopNum++;
+          delta = 500;
+        }
+      
+        setTimeout(function() {
+          that.tick();
+        }, delta);
+      };
+      
+      window.onload = function() {
+        var elements = document.getElementsByClassName('txt-rotate');
+        for (var i=0; i<elements.length; i++) {
+          var toRotate = elements[i].getAttribute('data-rotate');
+          var period = elements[i].getAttribute('data-period');
+          if (toRotate) {
+            new TxtRotate(elements[i], JSON.parse(toRotate), period);
+          }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+        document.body.appendChild(css);
+      };
 </script>
 
 </body>
