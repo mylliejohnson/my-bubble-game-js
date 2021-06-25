@@ -17,16 +17,12 @@
 
         <div id="input-form">
             <input class='inputname' onchange='getplayername' type="text" name="username" placeholder="Enter name here" />
-            <button id="send-btn" class="btn"><a href="./intro.html">Play</a></button>
+            <button id="send-btn" class="btn">Play</button>
         </div>
 
         <h2>High Scores👇</h2>
         <ul class="top5">
-            <li class="hs1">1. </li>
-            <li class="hs2">2. </li>
-            <li class="hs3">3. </li>
-            <li class="hs4">4. </li>
-            <li class="hs5">5. </li>
+           
         </ul>
 
     </div>
@@ -70,6 +66,8 @@
         });
     });
 </script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="highscore.js"></script>
 <script>
     function play(){
         let audio = document.getElementById("my_audio");
@@ -134,11 +132,33 @@
         document.body.appendChild(css);
       };
 
-  
+      document.querySelector('#send-btn').onclick = function () {
+        window.location.replace(`/intro.html?name=${document.querySelector('.inputname').value}`)
+      }
+      let data = gethighscore()
+      console.log(data)
+      data.then(scores => { 
+        console.log(scores)
+        let sortedScores = scores.sort((a,b)=>{
+          return b.finalScore- a.finalScore 
+        })
+        console.log(sortedScores)
+        let html = ``
+        for (let i=0; i < 5; i++) {
+          html += `<li>${i+1}. ${sortedScores[i].name} ${sortedScores[i].finalScore}</li>`
+        }
+        document.querySelector(`.top5`).innerHTML = html
+        // 
+        //     <li class="hs2">2. </li>
+        //     <li class="hs3">3. </li>
+        //     <li class="hs4">4. </li>
+        //     <li class="hs5">5. </li>
+        
+      })
 </script>
 
 </body>
-<script src="highscore.js"></script>
+
 
 </html>
 
