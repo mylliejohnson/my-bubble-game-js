@@ -347,13 +347,16 @@ function animate() {
   }
 
   // --- SCORE KEEPING --- //
-  let finalScore = score;
+  finalScore = score;
   let obj = [];
   if (bubb.gameover) {
     obj.push(finalScore);
     console.log(obj);
   }
 } //end of animate function
+
+let finalScore = null
+
 
 // --- GAME RESET --- //
 window.onkeypress = function (e) {

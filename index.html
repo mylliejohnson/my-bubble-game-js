@@ -16,7 +16,7 @@
     <div class="highscores">
 
         <div id="input-form">
-            <input type="text" name="username" placeholder="Enter name here" />
+            <input class='inputname' onchange='getplayername' type="text" name="username" placeholder="Enter name here" />
             <button id="send-btn" class="btn"><a href="./intro.html">Play</a></button>
         </div>
 
@@ -138,8 +138,12 @@
         css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
         document.body.appendChild(css);
       };
+
+  
 </script>
 
 </body>
+<script src="highscore.js"></script>
 
 </html>
+
