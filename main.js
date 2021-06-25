@@ -22,24 +22,6 @@ icon.onclick = function () {
   }
 };
 
-//Review Animation
-anime
-  .timeline({ loop: true })
-  .add({
-    targets: ".ml15 .word",
-    scale: [14, 1],
-    opacity: [0, 1],
-    easing: "easeOutCirc",
-    duration: 800,
-    delay: (el, i) => 800 * i,
-  })
-  .add({
-    targets: ".ml15",
-    opacity: 0,
-    duration: 1000,
-    easing: "easeOutExpo",
-    delay: 1000,
-  });
 
 /* ---------------------- 
        Classes     
@@ -331,9 +313,8 @@ function animate() {
   }
 
   // ------ GAMEOVER ----- //
-  if (lives.length === 0) {
+  if (lives.length == 0) {
     bubb.gameover = true;
-
     ctx.fillText(Math.max(score), canvas.width - 400, canvas.height - 300);
     ctx.fillText("GAME OVER", canvas.width / 2 - 100, canvas.height / 2);
     //document.getElementById("input-form").value;
@@ -344,6 +325,26 @@ function animate() {
       canvas.height / 2 + 50
     );
     ctx.font = "48px Teko, san-serif";
+     
+    //Review Animation
+    document.querySelector('.ml15').style.display = "block"
+    anime
+    .timeline({ loop: true })
+    .add({
+      targets: ".ml15 .word",
+      scale: [14, 1],
+      opacity: [0, 1],
+      easing: "easeOutCirc",
+      duration: 800,
+      delay: (el, i) => 800 * i,
+    })
+    .add({
+      targets: ".ml15",
+      opacity: 0,
+      duration: 1000,
+      easing: "easeOutExpo",
+      delay: 1000,
+    });
   }
 
   // --- SCORE KEEPING --- //
@@ -353,6 +354,7 @@ function animate() {
     obj.push(finalScore);
     console.log(obj);
   }
+
 } //end of animate function
 
 // --- GAME RESET --- //
