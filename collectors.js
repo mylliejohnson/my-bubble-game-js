@@ -15,10 +15,9 @@ class Lovebubb {
   };
 
   move = () => {
-
     if(lives.length >= 1 && lives.length < 3){
-    this.y += 3;
-    this.draw();
+      this.y += 3;
+      this.draw();
     }
   };
 }
