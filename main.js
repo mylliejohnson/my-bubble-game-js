@@ -1,4 +1,4 @@
-/* --- GAME SETUP ----- */
+/* ---- GAME SETUP ----- */
 let bgMusic = document.getElementById("bgmusic");
 let icon = document.getElementById("icon");
 document.getElementById("bgmusic").volume = 0.7;
@@ -146,7 +146,6 @@ function displayLives() {
     i += 40;
     ctx.fillText(life, canvas.width - 175 + i, canvas.height - 25);
   }
-
 }
 
 /* ----------------------
@@ -392,7 +391,4 @@ window.onkeypress = function (e) {
 };
 ctx.font = "48px Teko, san-serif";
 
-
-
 animate();
-
